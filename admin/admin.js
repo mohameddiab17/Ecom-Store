@@ -32,3 +32,9 @@ orderModal.addEventListener("click", (e) => {
     orderModal.classList.add("d-none");
   }
 });
+
+const products = JSON.parse(localStorage.getItem("products"));
+products[0].id = 8700;
+localStorage.setItem("products", JSON.stringify(products))
+console.log(products);
+
