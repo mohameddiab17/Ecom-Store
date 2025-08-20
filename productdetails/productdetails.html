@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="stylesheet" href="./productdetails.css">
+</head>
+
+<body>
+
+
+    <main class="container my-4">
+
+
+        <div class="row">
+            <div class="col-md-6 product-gallery">
+                <div class="main-image-container">
+                    <img src="../assets/imgs/Mug.jpg" id="mainImage"
+                        class="main-image" alt="Main Product Image">
+                    <i class="far fa-heart wishlist-icon"></i>
+                </div>
+                <div class="thumbnails d-flex mt-3">
+                    <img src="../assets/imgs/Mug.jpg" class="me-2 active"
+                        alt="Thumbnail 1" onclick="changeImage(this.src)">
+                    <img src="../assets/imgs/Mug.jpg" class="me-2"
+                        alt="Thumbnail 2" onclick="changeImage(this.src)">
+                    <img src="../assets/imgs/Mug.jpg" class="me-2"
+                        alt="Thumbnail 3" onclick="changeImage(this.src)">
+                    <img src="../assets/imgs/Mug.jpg" class="me-2"
+                        alt="Thumbnail 4" onclick="changeImage(this.src)">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <p class="text-muted mb-1">Accessories</p>
+                <h1 class="h2 fw-bold">Leather Crossbody Bag</h1>
+                <div class="d-flex align-items-center my-3">
+                    <div class="text-warning">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#" class="ms-2 text-muted text-decoration-none">(4.8) - 234 reviews</a>
+                </div>
+                <p class="h3 fw-light mb-3">$89.99</p>
+                <p class="text-muted">Handcrafted genuine leather crossbody bag perfect for everyday use.</p>
+                <hr>
+                <div class="d-flex align-items-center mb-4">
+                    <label class="form-label me-3 mb-0">Quantity</label>
+                    <div class="input-group quantity-input">
+                        <button class="btn btn-outline-secondary" type="button" id="minus-btn">-</button>
+                        <input type="text" class="form-control text-center" value="1" id="quantity-input" readonly>
+                        <button class="btn btn-outline-secondary" type="button" id="plus-btn">+</button>
+                    </div>
+                    <span class="ms-3">30 available</span>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <a href="#" class="btn btn-dark btn-lg" role="button"><i
+                            class="fas fa-shopping-cart me-2"></i> Add to Cart</a>
+                    <button class="btn btn-outline-secondary" type="button"><i class="fas fa-share-alt me-2"></i>
+                        Share</button>
+                </div>
+
+                <div class="mt-4 border-top pt-3">
+                    <p class="d-flex align-items-center"><i class="fas fa-shipping-fast fs-5 me-2"></i> Free shipping on
+                        orders over $50</p>
+                    <p class="d-flex align-items-center"><i class="fas fa-shield-alt fs-5 me-2"></i> 2-year warranty
+                        included</p>
+                    <p class="d-flex align-items-center"><i class="fas fa-undo fs-5 me-2"></i> 30-day return policy</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./productdetails.js"></script>
+</body>
+
+</html>

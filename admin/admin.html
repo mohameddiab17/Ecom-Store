@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="../assets/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="./admin.css">
+</head>
+
+<body>
+
+  <div class="container py-4">
+    <h3 class="m-0 fw-bolder">Admin Panel</h3>
+    <p class="text-muted">Manage users, products, and system settings</p>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 my-4">
+      <div class="col">
+        <div class="card shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="m-0">Total Users</p>
+            <i class="fa-regular fa-user"></i>
+          </div>
+          <p class="mt-2 fw-bold fs-3">6</p>
+          <p class="text-success"><i class="fa-solid fa-arrow-up"></i> +12 from last week</p>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="m-0">Total Products</p>
+            <i class="fa-solid fa-box"></i>
+          </div>
+          <p class="mt-2 fw-bold fs-3">8</p>
+          <p class="text-success"><i class="fa-solid fa-arrow-up"></i> +5 from last week</p>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="m-0">Total Revenue</p>
+            <i class="fa-solid fa-dollar-sign"></i>
+          </div>
+          <p class="mt-2 fw-bold fs-3">$160,306</p>
+          <p class="text-success"><i class="fa-solid fa-arrow-up"></i> +12% from last month</p>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="m-0">Active Sellers</p>
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <p class="mt-2 fw-bold fs-3">2</p>
+          <p class="text-danger"><i class="fa-solid fa-arrow-down"></i> +1 from last week</p>
+        </div>
+      </div>
+    </div>
+
+    <ul class="nav nav-tabs my-5" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
+          role="tab" aria-controls="home-tab-pane" aria-selected="true">Products</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button"
+          role="tab" aria-controls="profile-tab-pane" aria-selected="false">Users</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button"
+          role="tab" aria-controls="contact-tab-pane" aria-selected="false">Orders</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active p-1" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+        tabindex="0">
+        <h5 class="fw-bold">Product Management</h5>
+        <p class="text-muted mb-3">Manage all products across the platform</p>
+        <div class="table-responsive">
+          <table class="table align-middle table-hover">
+            <thead>
+              <tr>
+                <th class="text-muted">Product</th>
+                <th class="text-muted">Seller</th>
+                <th class="text-muted">Category</th>
+                <th class="text-muted">Price</th>
+                <th class="text-muted">Stock</th>
+                <th class="text-muted">Featured</th>
+                <th class="text-muted">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <p class="fw-medium">Organic Cotton T-Shirt</p>
+                  <p class="text-muted d-none d-md-block">
+                    Comfortable and sustainable organic cotton t-shirt available in multiple colors.
+                  </p>
+                  <p class="text-muted d-md-none">More...</p>
+                </td>
+                <td>seller2</td>
+                <td>Clothing</td>
+                <td>$29.99</td>
+                <td>100</td>
+                <td>
+                  <button class="btn-featured">Featured</button>
+                </td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <p class="fw-medium">Smart Fitness Watch</p>
+                  <p class="text-muted d-none d-md-block">
+                    Advanced smartwatch with GPS
+                  </p>
+                  <p class="text-muted d-md-none">More...</p>
+                </td>
+                <td>seller1</td>
+                <td>Electronics</td>
+                <td>$299.99</td>
+                <td>25</td>
+                <td>
+                  <button class="btn-featured">Featured</button>
+                </td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <p class="fw-medium">Leather Crossbody Bag</p>
+                  <p class="text-muted d-none d-md-block">
+                    Handcrafted leather crossbody
+                  </p>
+                  <p class="text-muted d-md-none">More...</p>
+                </td>
+                <td>seller3</td>
+                <td>Accessories</td>
+                <td>$89.99</td>
+                <td>30</td>
+                <td>
+                  <button class="btn-featured">Featured</button>
+                </td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane fade p-1" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+        <h5 class="fw-bold">User Management</h5>
+        <p class="text-muted mb-3">Manage user accounts and permissions</p>
+        <div class="table-responsive">
+          <table class="table align-middle table-hover">
+            <thead>
+              <tr>
+                <th class="text-muted">User</th>
+                <th class="text-muted">Email</th>
+                <th class="text-muted">Role</th>
+                <th class="text-muted">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <p class="fw-medium">moahmed</p>
+                  <p class="text-muted">
+                    ID: 125487
+                  </p>
+                </td>
+                <td>mohamed@gmail.com</td>
+                <td><span class="role role-seller text-capitalize">Seller</span></td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <p class="fw-medium">moahmed</p>
+                  <p class="text-muted">
+                    ID: 125487
+                  </p>
+                </td>
+                <td>mohamed@gmail.com</td>
+                <td><span class="role role-customer text-capitalize">Customer</span></td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <p class="fw-medium">moahmed</p>
+                  <p class="text-muted">
+                    ID: 125487
+                  </p>
+                </td>
+                <td>mohamed@gmail.com</td>
+                <td><span class="role role-admin text-capitalize">admin</span></td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-eye"></i></button>
+                    <!-- <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button> -->
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane fade p-1" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+        <h5 class="fw-bold">Orders Management</h5>
+        <p class="text-muted mb-3">View and manage all customer orders across the platform</p>
+        <div class="table-responsive">
+          <table class="table align-middle table-hover">
+            <thead>
+              <tr>
+                <th class="text-muted">Order</th>
+                <th class="text-muted">Customer</th>
+                <th class="text-muted">Total</th>
+                <th class="text-muted">Status</th>
+                <th class="text-muted">Date</th>
+                <th class="text-muted">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <p class="fw-medium">#ORD-002</p>
+                  <p class="text-muted">
+                    Track: TRK987654321
+                  </p>
+                </td>
+                <td>
+                  <p class="fw-medium">Customar-name</p>
+                  <p class="text-muted">
+                    customer@gmail.com
+                  </p>
+                </td>
+                <td>$220</td>
+                <td><span class="status shipped"><i class="fa-solid fa-microchip"></i>Shipped</span></td>
+                <td>22/10/2024</td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-secondary" id="eye"><i class="fa-regular fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <p class="fw-medium">#ORD-005</p>
+                  <p class="text-muted">
+                    Track: TRK987654321
+                  </p>
+                </td>
+                <td>
+                  <p class="fw-medium">Customar-name</p>
+                  <p class="text-muted">
+                    customer@gmail.com
+                  </p>
+                </td>
+                <td>$220</td>
+                <td><span class="status cancelled"><i class="fa-solid fa-xmark"></i>Cancelled</span></td>
+                <td>22/4/2024</td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <p class="fw-medium">#ORD-007</p>
+                  <p class="text-muted">
+                    Track: TRK987654321
+                  </p>
+                </td>
+                <td>
+                  <p class="fw-medium">Customar-name</p>
+                  <p class="text-muted">
+                    customer@gmail.com
+                  </p>
+                </td>
+                <td>$220</td>
+                <td><span class="status delivered"><i class="fa-regular fa-truck"></i>Delivered</span></td>
+                <td>12/1/2024</td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Modal -->
+  <div id="orderModal" class="custom-backdrop d-none">
+    <div class="custom-modal shadow py-5">
+      <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+        <h5 class="m-0">Order Details - #ORD-002</h5>
+        <button id="closeModal" class="btn-close"></button>
+      </div>
+
+      <p class="text-muted">Complete order information and management options</p>
+      <div class="row">
+        <!-- Left: Order Items -->
+        <div class="col-md-6">
+          <h6 class="my-1">Order Items</h6>
+          <div class="d-flex align-items-center gap-3 p-2 bg-light rounded mb-2">
+            <img src="../assets/img/3.jpg" class="rounded" alt="T-shirt">
+            <div>
+              <strong>Organic Cotton T-Shirt</strong><br>
+              <small>2 × $29.99</small>
+            </div>
+            <div class="ms-auto fw-bold">$59.98</div>
+          </div>
+          <div class="d-flex align-items-center gap-3 p-2 bg-light rounded mb-2">
+            <img src="../assets/img/3.jpg" class="rounded" alt="Watch">
+            <div>
+              <strong>Smart Fitness Watch</strong><br>
+              <small>1 × $299.99</small>
+            </div>
+            <div class="ms-auto fw-bold">$299.99</div>
+          </div>
+        </div>
+
+        <!-- Right: Customer Info -->
+        <div class="col-md-6">
+          <h6>Customer Information</h6>
+          <p class="mb-1"><strong>Name:</strong> Jane Customer</p>
+          <p class="mb-1"><strong>Email:</strong> customer@example.com</p>
+          <p class="mb-1"><strong>Payment:</strong> Credit Card (**** 5678)</p>
+
+          <h6 class="mt-3">Shipping Address</h6>
+          <p class="mb-1">Jane Customer</p>
+          <p class="mb-1">123 Main St</p>
+          <p>New York, NY 10001</p>
+
+          <h6 class="mt-3">Order Summary</h6>
+          <div class="d-flex justify-content-between"><span>Subtotal</span><span>$347.84</span></div>
+          <div class="d-flex justify-content-between"><span>Shipping</span><span>$9.99</span></div>
+          <div class="d-flex justify-content-between"><span>Tax</span><span>$31.12</span></div>
+          <hr>
+          <div class="d-flex justify-content-between fw-bold"><span>Total</span><span>$388.95</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  <script src="./admin.js"></script>
+</body>
+
+</html>

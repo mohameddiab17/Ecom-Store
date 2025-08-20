@@ -1,0 +1,107 @@
+:root {
+    --main-color: #0F172A;
+    --secondary-color: #708292;
+}
+
+h1 {
+    color: var(--main-color);
+}
+
+p {
+    color: var(--secondary-color);
+}
+
+#add-product-btn {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+}
+
+#add-product-btn .btn-text {
+    font-size: 0.8rem;
+}
+
+#add-product-btn i {
+    font-size: 0.8rem;
+}
+
+.box {
+    background-color: white;
+    color: var(--main-color);
+}
+
+.box i {
+    color: var(--secondary-color);
+}
+
+.action-i {
+    color: var(--main-color);
+}
+
+.i-container:hover {
+    width: 30px;
+    height: 30px;
+    background-color: #dfe0e0;
+    border-radius: 5px;
+}
+
+.stock-status-danger,
+.stock-status-dark {
+    transition: background-color 0.3s ease;
+}
+
+.stock-status-danger:hover {
+    background-color: #ff6b6b !important;
+    cursor: pointer;
+}
+
+.stock-status-dark:hover {
+    background-color: #495057 !important;
+    cursor: pointer;
+}
+
+h4,
+h5 {
+    color: var(--main-color);
+}
+
+p {
+    color: var(--secondary-color);
+}
+
+.addBtn {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+}
+
+.addBtn:hover {
+    background-color: #3a3e3e;
+    color: white
+}
+
+label {
+    color: var(--main-color);
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea:focus {
+    border: 2px solid var(--main-color) !important;
+    box-shadow: none;
+}
+
+button[type="reset"] {
+    background-color: var(--main-color);
+}
+
+button[type="submit"] {
+    background-color: var(--main-color);
+}
+
+.add-product {
+    background: rgba(0, 0, 0, 0.05);
+    position: fixed;
+    inset: 0;
+    padding-block: 20px;
+}

@@ -1,0 +1,38 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+}
+
+.cart-item {
+    border-bottom: 1px solid #e9ecef;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.quantity-input {
+    max-width: 120px;
+}
+
+.order-summary {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.empty-cart-container {
+    min-height: 50vh;
+}
+
+.empty-cart-icon {
+    font-size: 5rem;
+    color: #6c757d;
+}
+
+.rounded {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}

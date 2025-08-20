@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shipping</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/all.min.css">
+</head>
+
+<body class="bg-light">
+
+    <div class="container my-5">
+        <h2 class="mb-5">Checkout</h2>
+
+        <div class="d-flex justify-content-center align-items-center mb-5">
+            <div class="spacesbtn text-center mx-1">
+                <div class="btn btn-dark rounded-circle d-flex justify-content-center align-items-center mx-auto"
+                    style="width:50px;height:50px;"><i class="fa-regular fa-truck"></i></div>
+                <div class="d-block mt-2 fw-bold">Shipping</div>
+            </div>
+            <hr class="w-25 mx-2">
+            <div class="spacesbtn text-center mx-1">
+                <div class="btn btn-outline-secondary rounded-circle d-flex justify-content-center align-items-center mx-auto"
+                    style="width:50px;height:50px;"><i class="fa-brands fa-cc-visa"></i></div>
+                <div class="d-block mt-2 text-secondary">Payment</div>
+            </div>
+            <hr class="w-25 mx-2">
+            <div class="spacesbtn text-center mx-1">
+                <div class="btn btn-outline-secondary rounded-circle d-flex justify-content-center align-items-center mx-auto"
+                    style="width:50px;height:50px;"><i class="fa-regular fa-square-check"></i></div>
+                <div class="d-block mt-2 text-secondary">Review</div>
+            </div>
+        </div>
+
+        <div class="row g-4 py-3">
+            <div class="col-lg-8">
+                <div class="card p-4">
+                    <h5 class="mb-4">Shipping Information</h5>
+                    <form class="row" novalidate id="form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control min-" required>
+                                <p class="invalid-feedback">First name is required.</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" required>
+                                <p class="invalid-feedback">Last name is required.</p>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" required>
+                                <p class="invalid-feedback">Please enter a valid email address.</p>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label">Phone</label>
+                                <input type="text" class="form-control" required>
+                                <p class="invalid-feedback">Phone number is required.</p>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-control" required>
+                                <p class="invalid-feedback">Address is required.</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control" required>
+                                <p class="invalid-feedback">City is required.</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">State</label>
+                                <select class="form-select" required>
+                                    <option value="" selected disabled>Select state</option>
+                                    <option>NY</option>
+                                    <option>CA</option>
+                                    <option>TX</option>
+                                </select>
+                                <p class="invalid-feedback">Please select a state.</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">ZIP Code</label>
+                                <input type="text" class="form-control" required>
+                                <p class="invalid-feedback">ZIP code is required.</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-dark w-100 mt-3">Continue to Payment</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card p-4">
+                    <h5>Order Summary</h5>
+                    <div class="d-flex justify-content-between mt-3">
+                        <span>Organic Cotton T-Shirt</span>
+                        <span>$30.30</span>
+                    </div>
+                    <small class="text-secondary">Qty: 1</small>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <span>Subtotal</span>
+                        <span>$30.30</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Shipping</span>
+                        <span>$10.0</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Tax</span>
+                        <span>$2.40</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between fw-bold">
+                        <span>Total</span>
+                        <span>$42.38</span>
+                    </div>
+                    <ul class="mt-3 text-secondary small">
+                        <li>✓ Secure payment processing</li>
+                        <li>✓ 30-day return policy</li>
+                        <li>✓ Customer support 24/7</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./shipping.js"></script>
+</body>
+
+</html>
