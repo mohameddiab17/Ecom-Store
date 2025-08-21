@@ -1,3 +1,13 @@
+
+
+
+//working on cards
+
+
+
+
+
+// featured / not featured => change in ui
 document.querySelectorAll(".btn-featured").forEach((btn) => {
   btn.addEventListener("click", () => {
     if (btn.classList.contains("btn-featured")) {
@@ -33,8 +43,4 @@ orderModal.addEventListener("click", (e) => {
   }
 });
 
-const products = JSON.parse(localStorage.getItem("products"));
-products[0].id = 8700;
-localStorage.setItem("products", JSON.stringify(products))
-console.log(products);
 
