@@ -13,6 +13,56 @@
 
 <body>
 
+
+  <div class="py-5 d-flex justify-content-center add-product position-fixed top-0 bottom-0 start-0 end-0 z-2 d-none">
+    <div class="bg-white p-3 rounded shadow-sm" style="width: 400px;">
+
+      <!-- Title -->
+      <h4 class="fw-bold">Update Product</h4>
+      <p class="text-muted mb-4">Fill in the details to update the product.</p>
+
+      <!-- Form -->
+      <form>
+
+        <!-- Product Name -->
+        <div class="mb-3">
+          <label class="form-label">Product Name</label>
+          <input type="text" class="form-control" placeholder="Enter product name" required>
+        </div>
+
+        <!-- Price -->
+        <div class="mb-3">
+          <label class="form-label">Price ($)</label>
+          <input type="number" class="form-control" value="0" min="0" required>
+        </div>
+
+        <!-- Category -->
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select class="form-select" required>
+            <option selected disabled>Select category</option>
+            <option>Clothing</option>
+            <option>Fitness</option>
+            <option>Electronics</option>
+          </select>
+        </div>
+
+        <!-- Stock Quantity -->
+        <div class="mb-3">
+          <label class="form-label">Stock Quantity</label>
+          <input type="number" class="form-control" value="0" min="0" required>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-end gap-2">
+          <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+          <button type="submit" class="btn btn-dark">Update Product</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
   <div class="container py-4">
     <h3 class="m-0 fw-bolder">Admin Panel</h3>
     <p class="text-muted">Manage users, products, and system settings</p>
@@ -24,8 +74,8 @@
             <p class="m-0">Total Users</p>
             <i class="fa-regular fa-user"></i>
           </div>
-          <p class="mt-2 fw-bold fs-3">6</p>
-          <p class="text-success"><i class="fa-solid fa-arrow-up"></i> +12 from last week</p>
+          <p class="mt-2 fw-bold fs-3" id="users-nums"></p>
+          <p id="users-status"></p>
         </div>
       </div>
 
@@ -35,8 +85,8 @@
             <p class="m-0">Total Products</p>
             <i class="fa-solid fa-box"></i>
           </div>
-          <p class="mt-2 fw-bold fs-3">8</p>
-          <p class="text-success"><i class="fa-solid fa-arrow-up"></i> +5 from last week</p>
+          <p class="mt-2 fw-bold fs-3" id="products-num"></p>
+          <p id="products-status"></p>
         </div>
       </div>
 
@@ -46,8 +96,8 @@
             <p class="m-0">Total Revenue</p>
             <i class="fa-solid fa-dollar-sign"></i>
           </div>
-          <p class="mt-2 fw-bold fs-3">$160,306</p>
-          <p class="text-success"><i class="fa-solid fa-arrow-up"></i> +12% from last month</p>
+          <p class="mt-2 fw-bold fs-3" id="price"></p>
+          <p id="revenue-status"></p>
         </div>
       </div>
 
@@ -57,8 +107,8 @@
             <p class="m-0">Active Sellers</p>
             <i class="fa-solid fa-store"></i>
           </div>
-          <p class="mt-2 fw-bold fs-3">2</p>
-          <p class="text-danger"><i class="fa-solid fa-arrow-down"></i> +1 from last week</p>
+          <p class="mt-2 fw-bold fs-3" id="sellers-nums"></p>
+          <p id="sellers-status"></p>
         </div>
       </div>
     </div>
@@ -77,17 +127,17 @@
           role="tab" aria-controls="contact-tab-pane" aria-selected="false">Orders</button>
       </li>
     </ul>
+
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active p-1" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
         tabindex="0">
         <h5 class="fw-bold">Product Management</h5>
         <p class="text-muted mb-3">Manage all products across the platform</p>
         <div class="table-responsive">
-          <table class="table align-middle table-hover">
+          <table class="table align-middle table-hover" id="productsTable">
             <thead>
               <tr>
                 <th class="text-muted">Product</th>
-                <th class="text-muted">Seller</th>
                 <th class="text-muted">Category</th>
                 <th class="text-muted">Price</th>
                 <th class="text-muted">Stock</th>
@@ -104,7 +154,6 @@
                   </p>
                   <p class="text-muted d-md-none">More...</p>
                 </td>
-                <td>seller2</td>
                 <td>Clothing</td>
                 <td>$29.99</td>
                 <td>100</td>
@@ -127,7 +176,6 @@
                   </p>
                   <p class="text-muted d-md-none">More...</p>
                 </td>
-                <td>seller1</td>
                 <td>Electronics</td>
                 <td>$299.99</td>
                 <td>25</td>
@@ -150,7 +198,6 @@
                   </p>
                   <p class="text-muted d-md-none">More...</p>
                 </td>
-                <td>seller3</td>
                 <td>Accessories</td>
                 <td>$89.99</td>
                 <td>30</td>
@@ -348,7 +395,6 @@
         <div class="col-md-6">
           <h6 class="my-1">Order Items</h6>
           <div class="d-flex align-items-center gap-3 p-2 bg-light rounded mb-2">
-            <img src="../assets/img/3.jpg" class="rounded" alt="T-shirt">
             <div>
               <strong>Organic Cotton T-Shirt</strong><br>
               <small>2 × $29.99</small>
@@ -356,7 +402,6 @@
             <div class="ms-auto fw-bold">$59.98</div>
           </div>
           <div class="d-flex align-items-center gap-3 p-2 bg-light rounded mb-2">
-            <img src="../assets/img/3.jpg" class="rounded" alt="Watch">
             <div>
               <strong>Smart Fitness Watch</strong><br>
               <small>1 × $299.99</small>
@@ -389,7 +434,7 @@
   </div>
 
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
-  <script src="./admin.js"></script>
+  <script src="./admin.js" type="module"></script>
 </body>
 
 </html>
