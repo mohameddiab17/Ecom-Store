@@ -95,7 +95,7 @@
 
                 <!-- Table -->
                 <div class="table-responsive">
-                    <table class="table align-middle">
+                    <table id="products-table" class="table align-middle">
                         <thead class="table-light">
                             <tr>
                                 <th>Product</th>
@@ -106,57 +106,18 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <!-- Product cell -->
-                                <td>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <img src="1.jpg" alt="Product" width="40" height="40" class="rounded"
-                                            style="object-fit: cover;">
-                                        <div>
-                                            <div class="fw-bold"> Product Name</div>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <!-- Category -->
-                                <td>Clothing</td>
-
-                                <!-- Price -->
-                                <td>$20</td>
-
-                                <!-- Stock -->
-                                <td>0</td>
-
-                                <!-- Status -->
-                                <td>
-                                    <!-- <span class="stock-status-danger badge bg-danger px-3 py-2">Out of Stock</span> -->
-                                    <span class="stock-status-dark badge bg-dark px-3 py-2">In Stock</span>
-                                </td>
-
-                                <!-- Actions -->
-                                <td>
-                                    <div class="d-flex gap-2">
-                                        <button class="btn btn-sm btn-outline-secondary"><i
-                                                class="fa-regular fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-outline-warning"><i
-                                                class="fa-solid fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-outline-danger"><i
-                                                class="fa-solid fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
+                       
                     </table>
                 </div>
 
             </div>
         </div>
 
-        <div class="py-5 d-none">
+        <div id="no-products-yet" class="py-5 d-none">
             <div class="border rounded p-4 bg-white d-flex flex-column gap-2">
 
-                <!-- title & decriptoin-->
+                <!-- title
+                  & decriptoin-->
                 <h4 class="fw-bold">Your Products</h4>
                 <p class="text-muted">Manage your product inventory and pricing</p>
 
@@ -237,7 +198,7 @@
 
                 <!-- Buttons -->
                 <div class="d-flex justify-content-end gap-2">
-                    <button id="cancel-add-product" type="reset" class="btn btn-outline-secondary">Cancel</button>
+                    <button id="cancel-add-product" type="reset" class="btn btn btn-light">Cancel</button>
                     <button id ="submit-add-product" type="submit" class="btn btn-dark">Add Product</button>
                 </div>
 
@@ -245,6 +206,51 @@
         </div>
     </div>
 
+     <div id="update-product-form" class="py-5 d-flex align-items-center justify-content-center add-product d-none">
+        <div class="bg-white p-3 rounded shadow-sm">
+
+            <!-- Title -->
+            <h4 class="fw-bold">Edit Product</h4>
+            <p class="text-muted mb-4">Update the product details.</p>
+
+            <!-- Form -->
+            <form id=>
+
+                <!-- Product Name -->
+                <div class="mb-3">
+                    <label class="form-label">Product Name</label>
+                    <input id="product-name" type="text" class="form-control" placeholder="Enter product name" required>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea  id="description" class="form-control" rows="3" placeholder="Enter product description" required></textarea>
+                </div>
+
+                <!-- Price -->
+                <div class="mb-3">
+                    <label class="form-label">Price ($)</label>
+                    <input id="price" type="number" class="form-control" min="0" placeholder="Enter product price" required>
+                </div>
+
+                <!-- Stock Quantity -->
+                <div class="mb-3">
+                    <label class="form-label">Stock Quantity</label>
+                    <input id="stock" type="number" class="form-control" min="0" step="1" placeholder="Enter stock quantity" required>
+                </div>
+
+               
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-end gap-2">
+                    <button id="cancel-update-product" type="reset" class="btn btn btn-light">Cancel</button>
+                    <button id ="submit-update-product" type="submit" class="btn btn-dark">Update Product</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
 
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="./seller.js"></script>
