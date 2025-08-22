@@ -14,7 +14,8 @@
 <body>
 
 
-  <div class="py-5 d-flex justify-content-center add-product position-fixed top-0 bottom-0 start-0 end-0 z-2 d-none">
+  <div
+    class="editProduct py-5 d-flex justify-content-center add-product position-fixed top-0 bottom-0 start-0 end-0 z-2 d-none">
     <div class="bg-white p-3 rounded shadow-sm" style="width: 400px;">
 
       <!-- Title -->
@@ -27,19 +28,19 @@
         <!-- Product Name -->
         <div class="mb-3">
           <label class="form-label">Product Name</label>
-          <input type="text" class="form-control" placeholder="Enter product name" required>
+          <input type="text" id="titleUpdated" class="form-control" placeholder="Enter product name" required>
         </div>
 
         <!-- Price -->
         <div class="mb-3">
           <label class="form-label">Price ($)</label>
-          <input type="number" class="form-control" value="0" min="0" required>
+          <input type="number" id="priceUpdated" class="form-control" value="0" min="0" required>
         </div>
 
         <!-- Category -->
         <div class="mb-3">
           <label class="form-label">Category</label>
-          <select class="form-select" required>
+          <select id="categoryUpdated" class="form-select" required>
             <option selected disabled>Select category</option>
             <option>Clothing</option>
             <option>Fitness</option>
@@ -49,14 +50,14 @@
 
         <!-- Stock Quantity -->
         <div class="mb-3">
-          <label class="form-label">Stock Quantity</label>
-          <input type="number" class="form-control" value="0" min="0" required>
+          <label class="form-label" >Stock Quantity</label>
+          <input type="number" id="stockUpdated" class="form-control" value="0" min="0" required>
         </div>
 
         <!-- Buttons -->
         <div class="d-flex justify-content-end gap-2">
-          <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-          <button type="submit" class="btn btn-dark">Update Product</button>
+          <button type="reset" id="cancelBtn" class="btn btn-outline-secondary">Cancel</button>
+          <button type="submit" id="updateBtn" class="btn btn-dark">Update Product</button>
         </div>
 
       </form>
@@ -145,7 +146,7 @@
                 <th class="text-muted">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="ordersTableBody">
               <tr>
                 <td>
                   <p class="fw-medium">Organic Cotton T-Shirt</p>
@@ -436,5 +437,6 @@
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <script src="./admin.js" type="module"></script>
 </body>
+
 
 </html>
