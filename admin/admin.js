@@ -24,7 +24,7 @@ document.getElementById("products-status").innerHTML = getStatusChange(products.
 
 let sum = products.reduce((acc, p) => acc + p.price, 0);
 document.getElementById("price").innerText = `$${sum.toFixed(2)}`;
-document.getElementById("revenue-status").innerHTML = getStatusChange(sum, 1000);
+document.getElementById("revenue-status").innerHTML = getStatusChange(sum.toFixed(2), 1000);
 
 
 // ------------------ Users & Sellers ------------------
