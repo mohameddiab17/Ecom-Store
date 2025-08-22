@@ -13,6 +13,20 @@ const stock = document.querySelector("#stock");
 const productImg = document.querySelector("#product-img");
 const productsTable = document.querySelector("#products-table");
 const noProductsYet = document.querySelector("#no-products-yet");
+const totalProductsData = document.querySelector("#total-products")
+const revenueData = document.querySelector("#revenue")
+const lowStock= document.querySelector("#low-stock")
+const outOfStock = document.querySelector("#out-of-stock")
+
+ totalProductsData.textContent = productsTable.rows.length
+revenueData.textContent = calcRevenue();
+
+function calcRevenue(){
+let sum = 0;
+ let products = JSON.parse(localStorage.getItem("products")) || [];
+
+return sum;
+}
 
 addProductBtn.addEventListener("click", function () {
   console.log("add-product-btn clicked");
@@ -77,9 +91,11 @@ function displayNewProductInSellerDashboard() {
     let createdtr = document.createElement("tr");
     tbody.appendChild(createdtr);
 
+
     let tdImg = document.createElement("img");
     tdImg.src = product.image;
     createdtr.appendChild(tdImg);
+
 
     let tdTitle = document.createElement("td");
     tdTitle.textContent = product.title;
@@ -90,7 +106,7 @@ function displayNewProductInSellerDashboard() {
     createdtr.appendChild(tdCategory);
 
     let tdPrice = document.createElement("td");
-    tdPrice.textContent = `${product.price}`;
+    tdPrice.textContent = `${product.price}$` ;
     createdtr.appendChild(tdPrice);
 
     let tdStock = document.createElement("td");
@@ -108,7 +124,7 @@ function displayNewProductInSellerDashboard() {
     tdActions.innerHTML = `<div class="d-flex gap-2">
                                         <button onclick = "dispalyDetailsofNewProduct()" class="btn btn-sm btn-outline-secondary"><i
                                                 class="fa-regular fa-eye"></i></button>
-                                        <button onclick = "editNewProduct(${product.id})" class="btn btn-sm btn-outline-warning"><i
+                                        <button onclick = "editNewProduct()" class="btn btn-sm btn-outline-warning"><i
                                                 class="fa-solid fa-edit"></i></button>
                                         <button onclick = "removeNewProduct(${product.id}, this)" class="btn btn-sm btn-outline-danger"><i
                                                 class="fa-solid fa-trash"></i></button>
@@ -130,6 +146,7 @@ function editNewProduct() {
   submitUpdateBtn.addEventListener("click", function () {
    
   });
+
   cancelUpdateBtn.addEventListener("click", function () {
     updateProductForm.classList.remove("d-flex");
     updateProductForm.classList.add("d-none");
