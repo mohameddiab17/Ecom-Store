@@ -184,7 +184,7 @@
 
     </div>
 
-    <div class="py-5 d-flex align-items-center justify-content-center add-product d-none">
+    <div id="add-product-form" class="py-5 d-flex align-items-center justify-content-center add-product d-none">
         <div class="bg-white p-3 rounded shadow-sm">
 
             <!-- Title -->
@@ -192,53 +192,53 @@
             <p class="text-muted mb-4">Fill in the details to add a new product to your store.</p>
 
             <!-- Form -->
-            <form>
+            <form id=>
 
                 <!-- Product Name -->
                 <div class="mb-3">
                     <label class="form-label">Product Name</label>
-                    <input type="text" class="form-control" placeholder="Enter product name" required>
+                    <input id="product-name" type="text" class="form-control" placeholder="Enter product name" required>
                 </div>
 
                 <!-- Description -->
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter product description"></textarea>
+                    <textarea  id="description" class="form-control" rows="3" placeholder="Enter product description" required></textarea>
                 </div>
 
                 <!-- Price -->
                 <div class="mb-3">
                     <label class="form-label">Price ($)</label>
-                    <input type="number" class="form-control" value="0" min="0" required>
+                    <input id="price" type="number" class="form-control" min="0" placeholder="Enter product price" required>
                 </div>
 
                 <!-- Category -->
                 <div class="mb-3">
                     <label class="form-label">Category</label>
-                    <select class="form-select" required>
-                        <option selected disabled>Select category</option>
-                        <option>Clothing</option>
-                        <option>Fitness</option>
-                        <option>Electronics</option>
+                    <select id="category" class="form-select" required>
+                        <option value="" selected disabled hidden>Select category</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="fitness">Fitness</option>
+                        <option value="electronics">Electronics</option>
                     </select>
                 </div>
 
                 <!-- Stock Quantity -->
                 <div class="mb-3">
                     <label class="form-label">Stock Quantity</label>
-                    <input type="number" class="form-control" value="0" min="0" required>
+                    <input id="stock" type="number" class="form-control" min="0" step="1" placeholder="Enter stock quantity" required>
                 </div>
 
                 <!-- Image URL -->
                 <div class="mb-3">
                     <label class="form-label">Image URL</label>
-                    <input type="url" class="form-control" placeholder="https://example.com/image.jpg (optional)">
+                    <input id="product-img" type="url" class="form-control" placeholder="https://example.com/image.jpg (optional)">
                 </div>
 
                 <!-- Buttons -->
                 <div class="d-flex justify-content-end gap-2">
-                    <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-                    <button type="submit" class="btn btn-dark">Add Product</button>
+                    <button id="cancel-add-product" type="reset" class="btn btn-outline-secondary">Cancel</button>
+                    <button id ="submit-add-product" type="submit" class="btn btn-dark">Add Product</button>
                 </div>
 
             </form>

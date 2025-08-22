@@ -105,3 +105,16 @@ button[type="submit"] {
     inset: 0;
     padding-block: 20px;
 }
+
+#add-product-btn:hover {
+    background-color: #3a3e3e;
+    color: white
+}
+textarea{
+    resize: none;
+    height: 20vh; ;
+}
+form {
+  max-height: 70vh;   
+  overflow-y: auto;   
+}
