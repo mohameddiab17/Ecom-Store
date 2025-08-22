@@ -56,6 +56,109 @@ document.getElementById("sellers-status").innerHTML = getStatusChange(sellerCoun
 
 // Products Logic
 
+let tableBody = document.getElementById("ordersTableBody");
+
+tableBody.innerHTML = "";
+
+products.forEach((product) => {
+  let row = document.createElement("tr");
+
+  row.innerHTML = `
+    <td>
+      <p class="fw-medium">${product.title.split(" ").slice(1).join(" ")}</p>
+      <p class="text-muted 
+       d-md-block">${product.description}</p>
+      <p class="text-muted d-md-none">More...</p>
+    </td>
+    <td>${product.category}</td>
+    <td>$${product.price.toFixed(2)}</td>
+    <td>${product.stock}</td>
+<td>
+  <button class="${product.featured ? 'btn-featured' : 'btn-not-featured'}  ">
+    ${product.featured ? 'Featured' : 'Not Featured'}
+  </button>
+</td>
+  <td>
+      <div class="d-flex gap-2">
+         <button class="editBtn-${product.id} btn btn-sm btn-outline-secondary">
+            <i class="fa-solid fa-pen"></i>
+         </button>
+
+       <button class="deleteBtn-${product.id} btn btn-sm btn-outline-danger">
+          <i class="fa-solid fa-trash"></i>
+       </button>
+      </div>
+  </td>
+
+  `;
+
+  tableBody.appendChild(row);
+})
+
+// Edit and Delete Button Logic
+
+let EditProduct = document.querySelector(".editProduct");
+let updateBtn = document.getElementById("updateBtn");
+let cancelBtn = document.getElementById("cancelBtn");
+
+let currentProduct = null;
+
+products.forEach((product) => {
+  let editBtns = document.querySelectorAll(`.editBtn-${product.id}`);
+
+  editBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      currentProduct = product;
+
+      EditProduct.classList.remove("d-none");
+
+      document.getElementById("titleUpdated").value = product.title;
+      document.getElementById("priceUpdated").value = product.price;
+      document.getElementById("categoryUpdated").value = product.category;
+      document.getElementById("stockUpdated").value = product.stock;
+    });
+  });
+});
+
+updateBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  if (currentProduct) {
+    currentProduct.title = document.getElementById("titleUpdated").value;
+    currentProduct.price = parseFloat(document.getElementById("priceUpdated").value);
+    currentProduct.category = document.getElementById("categoryUpdated").value;
+    currentProduct.stock = parseInt(document.getElementById("stockUpdated").value);
+    
+
+    localStorage.setItem("products", JSON.stringify(products));
+
+    location.reload();
+  }
+});
+
+
+
+products.forEach((product) => {
+  let deleteBtn = document.querySelectorAll(`.deleteBtn-${product.id}`);
+
+  deleteBtn.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (confirm("Are you sure you want to delete this product?")) {
+        // عشان امسحها من ع وش الدنيا 
+        const updatedProducts = products.filter(p => p.id !== product.id);
+        localStorage.setItem("products", JSON.stringify(updatedProducts));
+        // وده عشان الصفحه ت ريلوود بعد ما مسحتها من علي وش الدنيا 
+        location.reload();
+      }
+    });
+  });
+});
+
+
+
+
+
+
 
 
 

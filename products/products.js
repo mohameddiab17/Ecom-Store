@@ -40,6 +40,7 @@ function initializeProducts() {
         new Product(20, "DANVOUY Womens T Shirt Casual Cotton Short", "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees.", 12.99, 3.6, 145, "women's clothing", "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_t.png", false)
     ];
     localStorage.setItem("products", JSON.stringify(initialProducts));
+    
 }
 
 /**
