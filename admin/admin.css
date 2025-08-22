@@ -44,6 +44,14 @@ ul#myTab.nav.nav-tabs {
     user-select: none;
 }
 
+
+.close-edit {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 18px;
+}
+
 .role {
     color: #fff;
     padding: 1px 6px;

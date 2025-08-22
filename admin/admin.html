@@ -15,8 +15,9 @@
 
 
   <div
-    class="editProduct py-5 d-flex justify-content-center add-product position-fixed top-0 bottom-0 start-0 end-0 z-2 d-none">
-    <div class="bg-white p-3 rounded shadow-sm" style="width: 400px;">
+    class="editProduct py-5 d-flex justify-content-center add-product position-fixed top-0 bottom-0 start-0 end-0 z-2 d-none overflow-auto">
+    <div class="bg-white p-3 rounded shadow-sm position-relative" style="width: 400px; max-height: 100vh;">
+      <i class="fa-solid fa-xmark close-edit"></i>
 
       <!-- Title -->
       <h4 class="fw-bold">Update Product</h4>
@@ -50,15 +51,14 @@
 
         <!-- Stock Quantity -->
         <div class="mb-3">
-          <label class="form-label" >Stock Quantity</label>
+          <label class="form-label">Stock Quantity</label>
           <input type="number" id="stockUpdated" class="form-control" value="0" min="0" required>
         </div>
 
         <!-- Buttons -->
-        <div class="d-flex justify-content-end gap-2">
-          <button type="reset" id="cancelBtn" class="btn btn-outline-secondary">Cancel</button>
-          <button type="submit" id="updateBtn" class="btn btn-dark">Update Product</button>
-        </div>
+
+        <button type="submit" id="updateBtn" class="btn btn-dark me-auto">Update Product</button>
+
 
       </form>
     </div>
@@ -147,71 +147,7 @@
               </tr>
             </thead>
             <tbody id="ordersTableBody">
-              <tr>
-                <td>
-                  <p class="fw-medium">Organic Cotton T-Shirt</p>
-                  <p class="text-muted d-none d-md-block">
-                    Comfortable and sustainable organic cotton t-shirt available in multiple colors.
-                  </p>
-                  <p class="text-muted d-md-none">More...</p>
-                </td>
-                <td>Clothing</td>
-                <td>$29.99</td>
-                <td>100</td>
-                <td>
-                  <button class="btn-featured">Featured</button>
-                </td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
-                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                  </div>
-                </td>
-              </tr>
 
-              <tr>
-                <td>
-                  <p class="fw-medium">Smart Fitness Watch</p>
-                  <p class="text-muted d-none d-md-block">
-                    Advanced smartwatch with GPS
-                  </p>
-                  <p class="text-muted d-md-none">More...</p>
-                </td>
-                <td>Electronics</td>
-                <td>$299.99</td>
-                <td>25</td>
-                <td>
-                  <button class="btn-featured">Featured</button>
-                </td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
-                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p class="fw-medium">Leather Crossbody Bag</p>
-                  <p class="text-muted d-none d-md-block">
-                    Handcrafted leather crossbody
-                  </p>
-                  <p class="text-muted d-md-none">More...</p>
-                </td>
-                <td>Accessories</td>
-                <td>$89.99</td>
-                <td>30</td>
-                <td>
-                  <button class="btn-featured">Featured</button>
-                </td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
-                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                  </div>
-                </td>
-              </tr>
             </tbody>
 
           </table>
@@ -433,6 +369,19 @@
       </div>
     </div>
   </div>
+
+  <div id="userModal" class="custom-backdrop d-none">
+    <div class="custom-modal shadow position-relative " style="max-width: 400px;">
+      <i class="fa-solid fa-xmark close-edit"></i>
+      <div>
+        <h6 class="mb-2 pb-1 border-bottom border-black border-1">User Information</h6>
+        <p class="mb-1"><strong>User Name:</strong> Jane Customer</p>
+        <p class="mb-1"><strong>Email:</strong> customer@example.com</p>
+        <p class="mb-1"><strong>Role:</strong> Customer</p>
+      </div>
+    </div>
+  </div>
+
 
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <script src="./admin.js" type="module"></script>
