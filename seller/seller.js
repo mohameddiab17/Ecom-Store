@@ -108,9 +108,9 @@ function displayNewProductInSellerDashboard() {
     tdActions.innerHTML = `<div class="d-flex gap-2">
                                         <button onclick = "dispalyDetailsofNewProduct()" class="btn btn-sm btn-outline-secondary"><i
                                                 class="fa-regular fa-eye"></i></button>
-                                        <button onclick = "editNewProduct()" class="btn btn-sm btn-outline-warning"><i
+                                        <button onclick = "editNewProduct(${product.id})" class="btn btn-sm btn-outline-warning"><i
                                                 class="fa-solid fa-edit"></i></button>
-                                        <button onclick = "removeNewProduct()" class="btn btn-sm btn-outline-danger"><i
+                                        <button onclick = "removeNewProduct(${product.id}, this)" class="btn btn-sm btn-outline-danger"><i
                                                 class="fa-solid fa-trash"></i></button>
                                     </div> `;
     createdtr.appendChild(tdActions);
@@ -118,3 +118,33 @@ function displayNewProductInSellerDashboard() {
 }
 displayNewProductInSellerDashboard();
 
+function dispalyDetailsofNewProduct() {
+  window.location.href = "../productdetails/productdetails.html";
+}
+
+function editNewProduct() {
+  updateProductForm.classList.remove("d-none");
+  updateProductForm.classList.add("d-flex");
+// submit not handeled yet
+
+  submitUpdateBtn.addEventListener("click", function () {
+   
+  });
+  cancelUpdateBtn.addEventListener("click", function () {
+    updateProductForm.classList.remove("d-flex");
+    updateProductForm.classList.add("d-none");
+  });
+}
+function removeNewProduct(id, btn) {
+
+  let products = JSON.parse(localStorage.getItem("products")) || [];
+
+  let newProducts = products.filter(product => product.id !== id);
+
+
+  localStorage.setItem("products", JSON.stringify(newProducts));
+
+  
+  let row = btn.closest("tr");
+  if (row) row.remove();
+}
