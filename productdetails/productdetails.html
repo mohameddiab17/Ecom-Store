@@ -1,83 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="./productdetails.css">
+    <link rel="stylesheet" href="productdetails.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
 </head>
-
 <body>
 
-
-    <main class="container my-4">
-
-
-        <div class="row">
+<!-- Header -->
+    <header class="header">
+        <div class="header-container container">
+            <a href="/index.html" class="logo">
+                <span class="logo-icon">E</span>
+                EcomStore
+            </a>
+            <nav class="nav-links d-none d-md-flex">
+                <a href="/products/products.html">Products</a>
+                <a href="/products/products.html">Categories</a>
+            </nav>
+            <div class="search-section">
+                <input type="text" class="search-input" placeholder="Search products..." />
+                <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+            <div class="auth-section d-md-flex align-items-center">
+                <!-- للزوار -->
+                <a href="/auth/signin/signin.html" id="loginLink" class="btn btn-outline login-btn">Login</a>
+                <a href="/auth/signup/signup.html" id="registerLink" class="btn btn-dark signup-btn">Sign Up</a>
+                
+                <!-- للمستخدم المسجل -->
+                <a href="/cart/cart.html" id="cartLink" class="nav-link ms-3 position-relative" style="display:none;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">0</span>
+                </a>
+                <a href="/auth/profile/profile.html" id="profileLink" class="nav-link ms-3" style="display:none;"><i class="fas fa-user"></i></a>
+                <!-- زرار الخروج هيتضاف هنا بالجافاسكربت -->
+            </div>
+            <button class="navbar-toggler d-md-none border-0 bg-transparent" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars" style="font-size: 20px; color: #0f172a"></i>
+            </button>
+        </div>
+        <div class="collapse d-md-none" id="mobileMenu">
+            <!-- Mobile nav content can be added here -->
+        </div>
+    </header>
+    <main class="container my-5">
+        <a href="/products/products.html" class="text-decoration-none text-dark mb-4 d-inline-block"><i class="fas fa-arrow-left me-2"></i> Back</a>
+        <div id="product-details-content" class="row">
+            <!-- Product Gallery -->
             <div class="col-md-6 product-gallery">
-                <div class="main-image-container">
-                    <img src="../assets/imgs/Mug.jpg" id="mainImage"
-                        class="main-image" alt="Main Product Image">
-                    <i class="far fa-heart wishlist-icon"></i>
+                <div class="main-image-container mb-3">
+                    <img src="https://placehold.co/600x600/EFEFEF/AAAAAA?text=Loading..." id="mainImage" class="main-image" alt="Main Product Image">
                 </div>
-                <div class="thumbnails d-flex mt-3">
-                    <img src="../assets/imgs/Mug.jpg" class="me-2 active"
-                        alt="Thumbnail 1" onclick="changeImage(this.src)">
-                    <img src="../assets/imgs/Mug.jpg" class="me-2"
-                        alt="Thumbnail 2" onclick="changeImage(this.src)">
-                    <img src="../assets/imgs/Mug.jpg" class="me-2"
-                        alt="Thumbnail 3" onclick="changeImage(this.src)">
-                    <img src="../assets/imgs/Mug.jpg" class="me-2"
-                        alt="Thumbnail 4" onclick="changeImage(this.src)">
-                </div>
+                <!-- Thumbnails will be loaded here by JS -->
+                <div id="thumbnails-container" class="thumbnails d-flex gap-2"></div>
             </div>
 
+            <!-- Product Info -->
             <div class="col-md-6">
-                <p class="text-muted mb-1">Accessories</p>
-                <h1 class="h2 fw-bold">Leather Crossbody Bag</h1>
+                <p id="product-category" class="text-muted mb-1">Category</p>
+                <h1 id="product-title" class="h2 fw-bold">Loading Product...</h1>
                 <div class="d-flex align-items-center my-3">
-                    <div class="text-warning">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="ms-2 text-muted text-decoration-none">(4.8) - 234 reviews</a>
+                    <div id="product-rating" class="text-warning"></div>
+                    <a href="#" id="product-reviews" class="ms-2 text-muted text-decoration-none">(0 reviews)</a>
                 </div>
-                <p class="h3 fw-light mb-3">$89.99</p>
-                <p class="text-muted">Handcrafted genuine leather crossbody bag perfect for everyday use.</p>
+                <p id="product-price" class="h3 fw-light mb-3">$0.00</p>
+                <p id="product-description" class="text-muted">Loading description...</p>
                 <hr>
-                <div class="d-flex align-items-center mb-4">
-                    <label class="form-label me-3 mb-0">Quantity</label>
-                    <div class="input-group quantity-input">
-                        <button class="btn btn-outline-secondary" type="button" id="minus-btn">-</button>
-                        <input type="text" class="form-control text-center" value="1" id="quantity-input" readonly>
-                        <button class="btn btn-outline-secondary" type="button" id="plus-btn">+</button>
+                <div id="purchase-controls">
+                    <div class="d-flex align-items-center mb-4">
+                        <label for="quantity-input" class="form-label me-3 mb-0">Quantity</label>
+                        <div class="input-group" style="width: 130px;">
+                            <button class="btn btn-outline-secondary" type="button" id="minus-btn">-</button>
+                            <input type="text" class="form-control text-center" value="1" id="quantity-input" readonly>
+                            <button class="btn btn-outline-secondary" type="button" id="plus-btn">+</button>
+                        </div>
+                        <span id="product-stock" class="ms-3 text-muted"></span>
                     </div>
-                    <span class="ms-3">30 available</span>
-                </div>
 
-                <div class="d-grid gap-2">
-                    <a href="#" class="btn btn-dark btn-lg" role="button"><i
-                            class="fas fa-shopping-cart me-2"></i> Add to Cart</a>
-                    <button class="btn btn-outline-secondary" type="button"><i class="fas fa-share-alt me-2"></i>
-                        Share</button>
-                </div>
-
-                <div class="mt-4 border-top pt-3">
-                    <p class="d-flex align-items-center"><i class="fas fa-shipping-fast fs-5 me-2"></i> Free shipping on
-                        orders over $50</p>
-                    <p class="d-flex align-items-center"><i class="fas fa-shield-alt fs-5 me-2"></i> 2-year warranty
-                        included</p>
-                    <p class="d-flex align-items-center"><i class="fas fa-undo fs-5 me-2"></i> 30-day return policy</p>
+                    <div class="d-grid gap-2">
+                        <button id="add-to-cart-btn" class="btn btn-dark btn-lg" type="button">
+                            <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Related Products Section -->
+        <div id="related-products-section" class="mt-5 pt-5 border-top">
+            <h2 class="fw-bold mb-4">Related Products</h2>
+            <div class="products-grid">
+                <!-- Related products will be loaded here by JS -->
+            </div>
+        </div>
     </main>
+    <!-- Footer -->
+    <footer class="site-footer bg-light">
+        <div class="container py-5">
+            <div class="row">
+                <!-- Brand -->
+                <div class="col-12 col-md-3 mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <div
+                            class="footer-logo-icon d-flex align-items-center justify-content-center rounded-circle text-white fw-bold">
+                            E
+                        </div>
+                        <span class="footer-logo-text ms-2">EcomStore</span>
+                    </div>
+                    <p class="small text-muted mb-0">
+                        Your trusted partner for all your shopping needs. Quality
+                        products, great prices, excellent service.
+                    </p>
+                </div>
 
+                <!-- Shop Links -->
+                <div class="col-6 col-md-3 mb-4">
+                    <h5 class="footer-heading">Shop</h5>
+                    <a class="footer-link" href="#">All Products</a>
+                    <a class="footer-link" href="#">Categories</a>
+                    <a class="footer-link" href="#">Special Deals</a>
+                    <a class="footer-link" href="#">New Arrivals</a>
+                </div>
+
+                <!-- Support Links -->
+                <div class="col-6 col-md-3 mb-4">
+                    <h5 class="footer-heading">Support</h5>
+                    <a class="footer-link" href="#">Help Center</a>
+                    <a class="footer-link" href="#">Contact Us</a>
+                    <a class="footer-link" href="#">Shipping Info</a>
+                    <a class="footer-link" href="#">Returns</a>
+                </div>
+
+                <!-- Company Links -->
+                <div class="col-6 col-md-3 mb-4">
+                    <h5 class="footer-heading">Company</h5>
+                    <a class="footer-link" href="#">About Us</a>
+                    <a class="footer-link" href="#">Careers</a>
+                    <a class="footer-link" href="#">Privacy Policy</a>
+                    <a class="footer-link" href="#">Terms of Service</a>
+                </div>
+            </div>
+
+            <div class="site-footer-bottom text-center mt-4 pt-3 border-top">
+                © 2025 EcomStore. All rights reserved.
+            </div>
+        </div>
+    </footer>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="./productdetails.js"></script>
+    <script src="/assets/js/index.js"></script> <!-- بنستدعي الملف الرئيسي عشان نستخدم الدوال اللي جواه -->
+    <script src="productdetails.js"></script>
 </body>
-
 </html>

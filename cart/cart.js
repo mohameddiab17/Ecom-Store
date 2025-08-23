@@ -7,6 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // This is the main function that builds the entire cart display.
     // It replaces your original "updateCart" function.
+        const loggedInUser = sessionStorage.getItem("loggedInUser");
+    if (!loggedInUser) {
+        // لو المستخدم مش مسجل دخوله، بنعرض رسالة تسجيل الدخول
+        displayLoginPrompt();
+        return; // بنوقف باقي الكود
+    }
     function renderCart() {
         // 1. Get the list of products from localStorage
         let cart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
@@ -77,10 +83,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const controlButtonsHTML = `
             <div class="d-flex justify-content-between my-4">
                 <button id="clearCartBtn" class="btn btn-outline-danger">Clear Cart</button>
-                <a href="/index.html" class="btn btn-outline-dark">Continue Shopping</a>
+                <a href="/products/products.html" class="btn btn-outline-dark">Continue Shopping</a>
             </div>
         `;
         cartItemsContainer.insertAdjacentHTML('beforeend', controlButtonsHTML);
+    }
+        /**
+     * Displays a "Please log in" message instead of the cart.
+     */
+    function displayLoginPrompt() {
+        const mainContainer = document.querySelector('main.container');
+        if (mainContainer) {
+            mainContainer.innerHTML = `
+                <div class="d-flex flex-column justify-content-center align-items-center text-center" style="min-height: 60vh;">
+                    <div class="mb-4" style="font-size: 5rem; color: #6c757d;"><i class="fas fa-shopping-cart"></i></div>
+                    <h1 class="h2 fw-bold">Please log in to view your cart</h1>
+                    <p class="text-muted">You need to be logged in to add items to your cart and checkout.</p>
+                    <a href="/auth/signin/signin.html" class="btn btn-dark mt-3">Login</a>
+                </div>
+            `;
+        }
     }
 
     // --- Event Handling for ALL buttons ---

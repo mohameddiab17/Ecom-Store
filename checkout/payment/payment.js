@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // --- 3. CALCULATE TOTALS ---
-        const shipping = 0; // <-- تم تعديل الشحن لـ 0 بناءً على طلبك
+        const shipping = 0;
         const tax = subtotal * 0.08; // 8% tax
         const total = subtotal + shipping + tax;
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btnText.textContent = 'Processing...';
 
             setTimeout(() => {
-                // ## --- تم إرجاع الجزء الخاص بحفظ الطلب --- ##
+                // ## --- الجزء الخاص بحفظ الطلب --- ##
                 const cart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
                 const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
                 
@@ -92,6 +92,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- 5. INITIAL LOAD ---
     loadSummary();
 });
