@@ -139,8 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /**
  * Renders a list of products to the grid.
- * @param {Array} productsArray - The array of products to display.
- */
+- */
 function renderProducts(productsArray) {
     const grid = document.querySelector(".products-grid");
     if (!grid) return;
@@ -158,6 +157,7 @@ function renderProducts(productsArray) {
                 <a href="#" class="btn btn-dark w-100 mt-2 add-to-cart-btn">Add to Cart</a>
             `;
         }
+        
 
         const productCardHTML = `
             <div class="product-card" data-product-id="${product.id}">
