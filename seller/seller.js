@@ -19,13 +19,26 @@ const lowStock= document.querySelector("#low-stock")
 const outOfStock = document.querySelector("#out-of-stock")
 
  totalProductsData.textContent = productsTable.rows.length
-revenueData.textContent = calcRevenue();
+revenueData.textContent = "$"+calcRevenue();
+lowStock.textContent = calcLowStock();
+outOfStock.textContent = calcOutofStock()
 
 function calcRevenue(){
 let sum = 0;
  let products = JSON.parse(localStorage.getItem("products")) || [];
+ sum = products.reduce((acc, p) => acc + p.price*p.stock, 0);
+return sum.toFixed(2);
+}
+function calcLowStock(){
+let products = JSON.parse(localStorage.getItem("products")) || [];
+let count = products.filter(p => (p.stock > 0 && p.stock <= 3)).length;
+return count;
+}
 
-return sum;
+function calcOutofStock(){
+let products = JSON.parse(localStorage.getItem("products")) || [];
+let count = products.filter(p => p.stock == 0).length;
+return count;
 }
 
 addProductBtn.addEventListener("click", function () {
@@ -41,6 +54,7 @@ cancelAddBtn.addEventListener("click", function () {
 submitAddBtn.addEventListener("click", function () {
   addNewProductToLocalStorage();
 });
+displayNewProductInSellerDashboard();
 
 function addNewProductToLocalStorage() {
   if (productName && description && price && category && stock) {
@@ -106,7 +120,7 @@ function displayNewProductInSellerDashboard() {
     createdtr.appendChild(tdCategory);
 
     let tdPrice = document.createElement("td");
-    tdPrice.textContent = `${product.price}$` ;
+    tdPrice.textContent = `$${(product.price).toFixed(2)}` ;
     createdtr.appendChild(tdPrice);
 
     let tdStock = document.createElement("td");
@@ -124,7 +138,7 @@ function displayNewProductInSellerDashboard() {
     tdActions.innerHTML = `<div class="d-flex gap-2">
                                         <button onclick = "dispalyDetailsofNewProduct()" class="btn btn-sm btn-outline-secondary"><i
                                                 class="fa-regular fa-eye"></i></button>
-                                        <button onclick = "editNewProduct()" class="btn btn-sm btn-outline-warning"><i
+                                        <button onclick = "editNewProduct(${product.id}, this)" class="btn btn-sm btn-outline-warning"><i
                                                 class="fa-solid fa-edit"></i></button>
                                         <button onclick = "removeNewProduct(${product.id}, this)" class="btn btn-sm btn-outline-danger"><i
                                                 class="fa-solid fa-trash"></i></button>
@@ -132,26 +146,63 @@ function displayNewProductInSellerDashboard() {
     createdtr.appendChild(tdActions);
   });
 }
-displayNewProductInSellerDashboard();
+
 
 function dispalyDetailsofNewProduct() {
   window.location.href = "../productdetails/productdetails.html";
 }
 
-function editNewProduct() {
+function editNewProduct(id, btn) {
+
+  console.log("edittttt")
+let products = JSON.parse(localStorage.getItem("products")) || [];
+  const idx = products.findIndex(p => p.id === id);
+  if (idx === -1) return;
+
+  // show update form
   updateProductForm.classList.remove("d-none");
   updateProductForm.classList.add("d-flex");
+
+  //select update inputs
+  const upProductName = document.querySelector("#upproduct-name")
+  const upDescription = document.querySelector("#updescription")
+  const upPrice = document.querySelector("#upprice")
+  const upStock= document.querySelector("#upstock")
+
+
 // submit not handeled yet
+
 
   submitUpdateBtn.addEventListener("click", function () {
    
+     products[idx] = {
+      ...products[idx],
+      title : upProductName.value,
+      description :upDescription.value,
+      price : upPrice.value,
+      stock : upStock.value
+     }
+    
   });
+     localStorage.setItem("products", JSON.stringify(products));
+
+
+     // refresh KPIs
+    revenueData.textContent = calcRevenue();
+    lowStock.textContent = calcLowStock();
+    outOfStock.textContent = calcOutofStock();
+
+    // hide form
+    updateProductForm.classList.remove("d-flex");
+    updateProductForm.classList.add("d-none");
+
 
   cancelUpdateBtn.addEventListener("click", function () {
     updateProductForm.classList.remove("d-flex");
     updateProductForm.classList.add("d-none");
   });
 }
+
 function removeNewProduct(id, btn) {
 
   let products = JSON.parse(localStorage.getItem("products")) || [];
