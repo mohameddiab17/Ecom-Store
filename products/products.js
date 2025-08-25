@@ -122,18 +122,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const loggedInUser = sessionStorage.getItem("loggedInUser");
 
         productsToDisplay.forEach(product => {
-            let buttonsHTML = `<a href="#" class="btn btn-outline-dark w-100 view-details-btn">View Details</a>`;
+            // ## --- التعديل هنا: تم إصلاح اللينك بتاع زرار View Details --- ##
+            const detailsPageUrl = `/productdetails/productdetails.html?id=${product.id}`;
+            
+            let buttonsHTML = `<a href="${detailsPageUrl}" class="btn btn-outline-dark w-100 view-details-btn">View Details</a>`;
             if (loggedInUser) {
                 buttonsHTML = `
-                    <a href="#" class="btn btn-outline-dark w-100 view-details-btn">View Details</a>
+                    <a href="${detailsPageUrl}" class="btn btn-outline-dark w-100 view-details-btn">View Details</a>
                     <a href="#" class="btn btn-dark w-100 mt-2 add-to-cart-btn">Add to Cart</a>
                 `;
             }
             const productCardHTML = `
                 <div class="product-card" data-product-id="${product.id}">
                     <div class="product-image">
-                        <!-- ## التعديل هنا: بنستخدم لينك الصورة مباشرة ## -->
-                        <img src="${product.image}" alt="${product.title}" />
+                        <img src="${product.image}" alt="${product.title}" onerror="this.src='https://placehold.co/600x400/ccc/FFFFFF?text=Image+Not+Found'" />
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">${product.title}</h3>
@@ -197,7 +199,7 @@ document.addEventListener('click', function (e) {
             id: productData.id, 
             name: productData.title, 
             price: `$${productData.price}`, 
-            image: productData.image, // <-- الصور بتيجي بلينك كامل جاهز
+            image: productData.image,
             quantity: 1 
         };
         

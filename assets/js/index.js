@@ -1,5 +1,3 @@
-// --- 1. DATABASE LOGIC (CLASSES AND DATA) ---
-
 class Product {
     constructor(id, title, description, price, rating, stock, category, image, featured = false) {
         this.id = id;
@@ -31,7 +29,6 @@ function initializeProducts() {
         new Product(7, "White Gold Plated Princess", "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her.", 9.99, 3, 400, "jewelery", "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_t.png", false),
         new Product(8, "Pierced Owl Rose Gold Plated Stainless Steel Double", "Rose Gold Plated Double Flared Tunnel Plug Earrings.", 10.99, 1.9, 100, "jewelery", "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_t.png", false),
         new Product(9, "WD 2TB Elements Portable External Hard Drive - USB 3.0", "USB 3.0 and USB 2.0 Compatibility Fast data transfers.", 64, 3.3, 203, "electronics", "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png", true),
-        new Product(10, "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s", "Easy upgrade for faster boot up, shutdown, application load and response.", 109, 2.9, 470, "electronics", "https://fakestoreapi.com/img/61U7T1KfZIL._AC_SX679_t.png", false),
         new Product(11, "Silicon Power 256GB SSD 3D NAND A55 SLC Cache", "3D NAND flash are applied to deliver high transfer speeds.", 109, 4.8, 319, "electronics", "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_t.png", false),
         new Product(12, "WD 4TB Gaming Drive Works with Playstation 4", "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup.", 114, 4.8, 400, "electronics", "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_t.png", true),
         new Product(13, "Acer SB220Q bi 21.5 inches Full HD IPS Ultra-Thin", "21. 5 inches Full HD (1920 x 1080) widescreen IPS display.", 599, 2.9, 250, "electronics", "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_t.png", false),
@@ -139,8 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /**
  * Renders a list of products to the grid.
- * @param {Array} productsArray - The array of products to display.
- */
+- */
 function renderProducts(productsArray) {
     const grid = document.querySelector(".products-grid");
     if (!grid) return;
@@ -149,15 +145,19 @@ function renderProducts(productsArray) {
     const loggedInUser = sessionStorage.getItem("loggedInUser");
 
     productsArray.forEach((product) => {
-        const imagePath = product.image; // Using the full URL directly
+        const imagePath = product.image;
 
-        let buttonsHTML = `<a href="#" class="btn btn-outline-dark w-100 view-details-btn">View Details</a>`;
+        // ## --- التعديل هنا: غيرنا اللينك بتاع زرار View Details --- ##
+        const detailsPageUrl = `/productdetails/productdetails.html?id=${product.id}`;
+        
+        let buttonsHTML = `<a href="${detailsPageUrl}" class="btn btn-outline-dark w-100 view-details-btn">View Details</a>`;
         if (loggedInUser) {
             buttonsHTML = `
-                <a href="#" class="btn btn-outline-dark w-100 view-details-btn">View Details</a>
+                <a href="${detailsPageUrl}" class="btn btn-outline-dark w-100 view-details-btn">View Details</a>
                 <a href="#" class="btn btn-dark w-100 mt-2 add-to-cart-btn">Add to Cart</a>
             `;
         }
+        
 
         const productCardHTML = `
             <div class="product-card" data-product-id="${product.id}">
@@ -177,7 +177,6 @@ function renderProducts(productsArray) {
         grid.insertAdjacentHTML("beforeend", productCardHTML);
     });
 }
-
 
 // --- 4. "ADD TO CART" GLOBAL EVENT LISTENER ---
 document.addEventListener('click', function (e) {
