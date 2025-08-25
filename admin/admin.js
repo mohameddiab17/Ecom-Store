@@ -27,7 +27,7 @@ document.getElementById("products-status").innerHTML = getStatusChange(
 
 // ------------------ Revenue Card ------------------
 
-let sum = products.reduce((acc, p) => acc + p.price, 0);
+let sum =products.reduce((acc, p) => acc + p.price*p.stock, 0);
 document.getElementById("price").innerText = `$${sum.toFixed(2)}`;
 document.getElementById("revenue-status").innerHTML = getStatusChange(sum,1000);
 
