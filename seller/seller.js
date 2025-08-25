@@ -13,32 +13,32 @@ const stock = document.querySelector("#stock");
 const productImg = document.querySelector("#product-img");
 const productsTable = document.querySelector("#products-table");
 const noProductsYet = document.querySelector("#no-products-yet");
-const totalProductsData = document.querySelector("#total-products")
-const revenueData = document.querySelector("#revenue")
-const lowStock= document.querySelector("#low-stock")
-const outOfStock = document.querySelector("#out-of-stock")
+const totalProductsData = document.querySelector("#total-products");
+const revenueData = document.querySelector("#revenue");
+const lowStock = document.querySelector("#low-stock");
+const outOfStock = document.querySelector("#out-of-stock");
 
- totalProductsData.textContent = productsTable.rows.length
-revenueData.textContent = "$"+calcRevenue();
+totalProductsData.textContent = productsTable.rows.length;
+revenueData.textContent = "$" + calcRevenue();
 lowStock.textContent = calcLowStock();
-outOfStock.textContent = calcOutofStock()
+outOfStock.textContent = calcOutofStock();
 
-function calcRevenue(){
-let sum = 0;
- let products = JSON.parse(localStorage.getItem("products")) || [];
- sum = products.reduce((acc, p) => acc + p.price*p.stock, 0);
-return sum.toFixed(2);
+function calcRevenue() {
+  let sum = 0;
+  let products = JSON.parse(localStorage.getItem("products")) || [];
+  sum = products.reduce((acc, p) => acc + p.price * p.stock, 0);
+  return sum.toFixed(2);
 }
-function calcLowStock(){
-let products = JSON.parse(localStorage.getItem("products")) || [];
-let count = products.filter(p => (p.stock > 0 && p.stock <= 3)).length;
-return count;
+function calcLowStock() {
+  let products = JSON.parse(localStorage.getItem("products")) || [];
+  let count = products.filter((p) => p.stock > 0 && p.stock <= 3).length;
+  return count;
 }
 
-function calcOutofStock(){
-let products = JSON.parse(localStorage.getItem("products")) || [];
-let count = products.filter(p => p.stock == 0).length;
-return count;
+function calcOutofStock() {
+  let products = JSON.parse(localStorage.getItem("products")) || [];
+  let count = products.filter((p) => p.stock == 0).length;
+  return count;
 }
 
 addProductBtn.addEventListener("click", function () {
@@ -105,11 +105,9 @@ function displayNewProductInSellerDashboard() {
     let createdtr = document.createElement("tr");
     tbody.appendChild(createdtr);
 
-
     let tdImg = document.createElement("img");
     tdImg.src = product.image;
     createdtr.appendChild(tdImg);
-
 
     let tdTitle = document.createElement("td");
     tdTitle.textContent = product.title;
@@ -120,7 +118,7 @@ function displayNewProductInSellerDashboard() {
     createdtr.appendChild(tdCategory);
 
     let tdPrice = document.createElement("td");
-    tdPrice.textContent = `$${(product.price).toFixed(2)}` ;
+    tdPrice.textContent = `$${product.price}`;
     createdtr.appendChild(tdPrice);
 
     let tdStock = document.createElement("td");
@@ -147,72 +145,68 @@ function displayNewProductInSellerDashboard() {
   });
 }
 
-
 function dispalyDetailsofNewProduct() {
   window.location.href = "../productdetails/productdetails.html";
 }
 
-function editNewProduct(id, btn) {
-
-  console.log("edittttt")
-let products = JSON.parse(localStorage.getItem("products")) || [];
-  const idx = products.findIndex(p => p.id === id);
-  if (idx === -1) return;
+function editNewProduct(id) {
+  console.log("edittttt");
+  let products = JSON.parse(localStorage.getItem("products")) || [];
+  console.log(products);
+  const productIndex = products.findIndex((p) => p.id === id);
+  console.log(productIndex);
+  if (productIndex === -1) return;
 
   // show update form
   updateProductForm.classList.remove("d-none");
   updateProductForm.classList.add("d-flex");
 
-  //select update inputs
-  const upProductName = document.querySelector("#upproduct-name")
-  const upDescription = document.querySelector("#updescription")
-  const upPrice = document.querySelector("#upprice")
-  const upStock= document.querySelector("#upstock")
+  //--------------------select update inputs------------------------------
+  const upProductName = document.querySelector("#upproduct-name");
+  const upDescription = document.querySelector("#updescription");
+  const upPrice = document.querySelector("#upprice");
+  const upStock = document.querySelector("#upstock");
 
+  // --------------------------fill update inputs with product data--------------------------------
+  upProductName.value = products[productIndex].title;
+  upDescription.value = products[productIndex].description;
+  upPrice.value = products[productIndex].price;
+  upStock.value = products[productIndex].stock;
 
-// submit not handeled yet
-
-
-  submitUpdateBtn.addEventListener("click", function () {
-   
-     products[idx] = {
-      ...products[idx],
-      title : upProductName.value,
-      description :upDescription.value,
-      price : upPrice.value,
-      stock : upStock.value
-     }
-    
-  });
-     localStorage.setItem("products", JSON.stringify(products));
-
-
-     // refresh KPIs
-    revenueData.textContent = calcRevenue();
-    lowStock.textContent = calcLowStock();
-    outOfStock.textContent = calcOutofStock();
-
-    // hide form
-    updateProductForm.classList.remove("d-flex");
-    updateProductForm.classList.add("d-none");
-
-
+  // -------------------------------- handle cancel update btn -------------------------------
   cancelUpdateBtn.addEventListener("click", function () {
     updateProductForm.classList.remove("d-flex");
     updateProductForm.classList.add("d-none");
   });
+
+  // -------------------------------- handle add update btn -------------------------------
+
+  submitUpdateBtn.addEventListener("click", function () {
+    // 1- add  update to local storage
+
+    // update local storage
+    let selectedProduct = products[productIndex];
+    selectedProduct.title = upProductName.value;
+    selectedProduct.description = upDescription.value;
+    selectedProduct.price = Number(upPrice.value);
+    selectedProduct.stock = Number(upStock.value);
+
+    // save updates in local storage
+    localStorage.setItem("products", JSON.stringify(products));
+
+    // 2- add update to ui
+    displayNewProductInSellerDashboard()
+
+  });
 }
 
 function removeNewProduct(id, btn) {
-
   let products = JSON.parse(localStorage.getItem("products")) || [];
 
-  let newProducts = products.filter(product => product.id !== id);
-
+  let newProducts = products.filter((product) => product.id !== id);
 
   localStorage.setItem("products", JSON.stringify(newProducts));
 
-  
   let row = btn.closest("tr");
   if (row) row.remove();
 }

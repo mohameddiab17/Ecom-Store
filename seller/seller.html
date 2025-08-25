@@ -44,7 +44,7 @@
                                 <h6 class="mb-0 fs-6 fs-md-6 fs-lg-5">Total Products</h6>
                                 <i class="fa-solid fa-box text-secondary fs-6 fs-md-5"></i>
                             </div>
-                            <h4 id = "total-products" class="fw-bold mb-0 fs-5 fs-md-4 fs-lg-3">0</h4>
+                            <h4 id="total-products" class="fw-bold mb-0 fs-5 fs-md-4 fs-lg-3">0</h4>
                         </div>
                     </div>
 
@@ -102,13 +102,13 @@
                                 <th>Product Name</th>
                                 <th>Category</th>
                                 <th>Price</th>
-                                
+
                                 <th>Stock</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                       
+
                     </table>
                 </div>
 
@@ -166,13 +166,15 @@
                 <!-- Description -->
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea  id="description" class="form-control" rows="3" placeholder="Enter product description" required></textarea>
+                    <textarea id="description" class="form-control" rows="3" placeholder="Enter product description"
+                        required></textarea>
                 </div>
 
                 <!-- Price -->
                 <div class="mb-3">
                     <label class="form-label">Price ($)</label>
-                    <input id="price" type="number" class="form-control" min="0" placeholder="Enter product price" required>
+                    <input id="price" type="number" class="form-control" min="0" placeholder="Enter product price"
+                        required>
                 </div>
 
                 <!-- Category -->
@@ -189,26 +191,28 @@
                 <!-- Stock Quantity -->
                 <div class="mb-3">
                     <label class="form-label">Stock Quantity</label>
-                    <input id="stock" type="number" class="form-control" min="0" step="1" placeholder="Enter stock quantity" required>
+                    <input id="stock" type="number" class="form-control" min="0" step="1"
+                        placeholder="Enter stock quantity" required>
                 </div>
 
                 <!-- Image URL -->
                 <div class="mb-3">
                     <label class="form-label">Image URL</label>
-                    <input id="product-img" type="url" class="form-control" placeholder="https://example.com/image.jpg (optional)">
+                    <input id="product-img" type="url" class="form-control"
+                        placeholder="https://example.com/image.jpg (optional)">
                 </div>
 
                 <!-- Buttons -->
                 <div class="d-flex justify-content-end gap-2">
                     <button id="cancel-add-product" type="reset" class="btn btn btn-light">Cancel</button>
-                    <button id ="submit-add-product" type="submit" class="btn btn-dark">Add Product</button>
+                    <button id="submit-add-product" type="submit" class="btn btn-dark">Add Product</button>
                 </div>
 
             </form>
         </div>
     </div>
 
-     <div id="update-product-form" class="py-5 d-flex align-items-center justify-content-center add-product d-none">
+    <div id="update-product-form" class="py-5 d-none align-items-center justify-content-center add-product ">
         <div class="bg-white p-3 rounded shadow-sm">
 
             <!-- Title -->
@@ -221,33 +225,37 @@
                 <!-- Product Name -->
                 <div class="mb-3">
                     <label class="form-label">Product Name</label>
-                    <input id="upproduct-name" type="text" class="form-control" placeholder="Enter product name" required>
+                    <input id="upproduct-name" type="text" class="form-control" placeholder="Enter product name"
+                        required>
                 </div>
 
                 <!-- Description -->
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea  id="updescription" class="form-control" rows="3" placeholder="Enter product description" required></textarea>
+                    <textarea id="updescription" class="form-control" rows="3" placeholder="Enter product description"
+                        required></textarea>
                 </div>
 
                 <!-- Price -->
                 <div class="mb-3">
                     <label class="form-label">Price ($)</label>
-                    <input id="upprice" type="number" class="form-control" min="0" placeholder="Enter product price" required>
+                    <input id="upprice" type="number" class="form-control" min="0" placeholder="Enter product price"
+                        required>
                 </div>
 
                 <!-- Stock Quantity -->
                 <div class="mb-3">
                     <label class="form-label">Stock Quantity</label>
-                    <input id="upstock" type="number" class="form-control" min="0" step="1" placeholder="Enter stock quantity" required>
+                    <input id="upstock" type="number" class="form-control" min="0" step="1"
+                        placeholder="Enter stock quantity" required>
                 </div>
 
-               
+
 
                 <!-- Buttons -->
                 <div class="d-flex justify-content-end gap-2">
                     <button id="cancel-update-product" type="reset" class="btn btn btn-light">Cancel</button>
-                    <button id ="submit-update-product" type="submit" class="btn btn-dark">Update Product</button>
+                    <button id="submit-update-product" type="submit" class="btn btn-dark">Update Product</button>
                 </div>
 
             </form>

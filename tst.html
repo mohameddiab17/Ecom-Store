@@ -39,3 +39,39 @@
                                 </td>
                             </tr>
                         </tbody>
+
+
+
+                        <!-- 
+  //select update inputs
+  const upProductName = document.querySelector("#upproduct-name");
+  const upDescription = document.querySelector("#updescription");
+  const upPrice = document.querySelector("#upprice");
+  const upStock = document.querySelector("#upstock");
+
+  // submit not handeled yet
+
+  submitUpdateBtn.addEventListener("click", function () {
+    products[idx] = {
+      ...products[idx],
+      title: upProductName.value,
+      description: upDescription.value,
+      price: upPrice.value,
+      stock: upStock.value,
+    };
+  });
+  localStorage.setItem("products", JSON.stringify(products));
+
+  // refresh KPIs
+  revenueData.textContent = calcRevenue();
+  lowStock.textContent = calcLowStock();
+  outOfStock.textContent = calcOutofStock();
+
+  // hide form
+  updateProductForm.classList.remove("d-flex");
+  updateProductForm.classList.add("d-none");
+
+  cancelUpdateBtn.addEventListener("click", function () {
+    updateProductForm.classList.remove("d-flex");
+    updateProductForm.classList.add("d-none");
+  }); -->
