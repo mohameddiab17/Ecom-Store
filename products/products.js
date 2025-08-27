@@ -1,3 +1,5 @@
+
+
 class Product {
     constructor(id, title, description, price, rating, stock, category, image, featured = false) {
         this.id = id;
@@ -136,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <img src="${product.image}" alt="${product.title}" />
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">${product.title}</h3>
+                        <h3 class="product-title">${product.title.split(" ").slice(0,3).join(" ")}...</h3>
                         <div class="product-footer">
                             <span class="product-price">$${product.price.toFixed(2)}</span>
                             <span class="product-category">${product.category}</span>
