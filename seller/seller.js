@@ -11,14 +11,17 @@ const price = document.querySelector("#price");
 const category = document.getElementById("category");
 const stock = document.querySelector("#stock");
 const productImg = document.querySelector("#product-img");
+const noAddedProductsScreen = document.querySelector("#no-added-products")
 const productsTable = document.querySelector("#products-table");
 const noProductsYet = document.querySelector("#no-products-yet");
 const totalProductsData = document.querySelector("#total-products");
 const revenueData = document.querySelector("#revenue");
 const lowStock = document.querySelector("#low-stock");
 const outOfStock = document.querySelector("#out-of-stock");
+ let products = JSON.parse(localStorage.getItem("products")) || [];
 
-totalProductsData.textContent = productsTable.rows.length;
+totalProductsData.textContent = products.length;
+
 revenueData.textContent = "$" + calcRevenue();
 lowStock.textContent = calcLowStock();
 outOfStock.textContent = calcOutofStock();
