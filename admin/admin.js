@@ -3,20 +3,16 @@
 const products = JSON.parse(localStorage.getItem("products")) || [];
 console.log(products);
 
-const usersData = JSON.parse(localStorage.getItem("usersPublic")) || [];
-console.log(usersData);
-
-const OrderUserData = JSON.parse(localStorage.getItem("userOrders")) || [];
-console.log(OrderUserData)
-
 // function for status changes
 function getStatusChange(current, previous) {
   if (current > previous) {
-    return `<p class="text-success"><i class="fa-solid fa-arrow-up"></i> +${(current - previous).toFixed(0)
-      } from last week</p>`;
+    return `<p class="text-success"><i class="fa-solid fa-arrow-up"></i> +${
+      (current - previous).toFixed(0)
+    } from last week</p>`;
   } else if (current < previous) {
-    return `<p class="text-danger"><i class="fa-solid fa-arrow-down"></i> -${(previous - current).toFixed(0)
-      } from last week</p>`;
+    return `<p class="text-danger"><i class="fa-solid fa-arrow-down"></i> -${
+      (previous - current).toFixed(0)
+    } from last week</p>`;
   } else {
     return `<p class="text-muted">No change from last week</p>`;
   }
@@ -33,7 +29,7 @@ document.getElementById("products-status").innerHTML = getStatusChange(
 
 let sum =products.reduce((acc, p) => acc + p.price*p.stock, 0);
 document.getElementById("price").innerText = `$${sum.toFixed(2)}`;
-document.getElementById("revenue-status").innerHTML = getStatusChange(sum, 1000);
+document.getElementById("revenue-status").innerHTML = getStatusChange(sum,1000);
 
 // ------------------ Users & Sellers ------------------
 const users = [
@@ -81,14 +77,14 @@ products.forEach((product) => {
       <img src="${product.image}" style="width:30px; margin-right:10px;"/>
       <div>
         <p class="fw-medium">${product.title
-      .split(" ")
-      .slice(0, 3)
-      .join(" ")}</p>
+          .split(" ")
+          .slice(0, 3)
+          .join(" ")}</p>
       <p class="text-muted 
        d-md-block">${product.description
-      .split(" ")
-      .slice(0, 5)
-      .join(" ")}...</p>
+         .split(" ")
+         .slice(0, 5)
+         .join(" ")}...</p>
       </div>
     </td>
     <td>${product.category}</td>
@@ -140,19 +136,19 @@ products.forEach((product) => {
   });
   updateBtn.addEventListener("click", (e) => {
     e.preventDefault();
-
+  
     if (currentProduct) {
       currentProduct.title = document.getElementById("titleUpdated").value || product.title;
       currentProduct.price = parseFloat(
         document.getElementById("priceUpdated").value || product.price
       );
-      currentProduct.category = document.getElementById("categoryUpdated").value || product.category;
+      currentProduct.category = document.getElementById("categoryUpdated").value ||product.category;
       currentProduct.stock = parseInt(
         document.getElementById("stockUpdated").value || product.stock
       );
-
+  
       localStorage.setItem("products", JSON.stringify(products));
-
+  
       location.reload();
     }
   });
@@ -175,108 +171,9 @@ products.forEach((product) => {
   });
 });
 
-document.querySelector(".close-edit").addEventListener("click", function () {
+document.querySelector(".close-edit").addEventListener("click", function() {
   EditProduct.classList.add("d-none")
 })
-
-
-
-// Users Logic
-
-let userTableBody = document.getElementById("usersTableBody");
-userTableBody.innerHTML = "";
-usersData.forEach((user) => {
-  let row = document.createElement("tr");
-  row.innerHTML = `
-       <td>
-                  <p class="fw-medium">${user.fullname}</p>
-                  <p class="text-muted">
-                    ID: ${user.id}
-                  </p>
-                </td>
-                <td>${user.email}</td>
-                <td><span class="role text-capitalize ${user.accountType === 'customer' ? 'role-customer' : 'role-seller'}">${user.accountType}</span></td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-secondary "><i class="fa-regular fa-eye"></i></button>
-                    <button class="btn btn-sm btn-outline-danger deleteUserBtn-${user.id}"><i class="fa-solid fa-trash"></i></button>
-                  </div>
-                </td>
-  `;
-  userTableBody.appendChild(row);
-});
-
-
-
-// Delete Users 
-
-usersData.forEach((user) => {
-  let deleteUserBtn = document.querySelectorAll(`.deleteUserBtn-${user.id}`);
-
-  deleteUserBtn.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      if (confirm("Are you sure you want to delete this user?")) {
-        // عشان امسحها من ع وش الدنيا
-        const updatedUsers = usersData.filter((u) => u.id !== user.id);
-        localStorage.setItem("usersPublic", JSON.stringify(updatedUsers));
-        // وده عشان الصفحه ت ريلوود بعد ما مسحتها من علي وش الدنيا
-        location.reload();
-      }
-    });
-  });
-});
-
-
-// View User Profile 
-
-
-
-
-// Display Order In Table 
-let ordersTablesBody = document.getElementById("ordersTable");
-console.log(ordersTablesBody);
-
-document.addEventListener("DOMContentLoaded", () => {
-  ordersTablesBody.innerHTML = "";
-
-  OrderUserData.forEach((order) => {
-    usersData.forEach((user) => {
-      let row = document.createElement("tr");
-      row.innerHTML = `
-          <td>
-            <p class="fw-medium">${order.id}</p>
-            <p class="text-muted">Track: ${order.tracking}</p>
-          </td>
-          <td>
-            <p class="fw-medium">${user.fullname}</p>
-            <p class="text-muted">${user.email}</p>
-          </td>
-          <td>$${order.total}</td>
-           <td><span class="status shipped"><i class="fa-solid fa-microchip"></i>${order.status}</span>
-           </td>
-                <td>22/10/2024</td>
-          <td>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-outline-secondary" id="eye">
-                <i class="fa-regular fa-eye"></i>
-              </button>
-              <button class="btn btn-sm btn-outline-danger">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </div>
-          </td>
-        `;
-      ordersTablesBody.appendChild(row);
-
-    });
-  });
-});
-
-
-
-
-
-
 
 // featured / not featured => change in ui
 document.querySelectorAll(".btn-featured, .btn-not-featured").forEach((btn, i) => {
