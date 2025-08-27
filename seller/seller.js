@@ -107,6 +107,7 @@ function displayNewProductInSellerDashboard() {
 
     let tdImg = document.createElement("img");
     tdImg.src = product.image;
+    tdImg.style.width = "50px"
     createdtr.appendChild(tdImg);
 
     let tdTitle = document.createElement("td");
