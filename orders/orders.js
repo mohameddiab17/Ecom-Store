@@ -65,6 +65,5 @@ document.addEventListener("DOMContentLoaded", () => {
             ordersContainer.insertAdjacentHTML("beforeend", orderCardHTML);
         });
     }
-
     renderOrders();
 });
