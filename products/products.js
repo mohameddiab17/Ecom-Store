@@ -153,14 +153,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function applyFiltersAndSort() {
         let filteredProducts = [...allProducts];
+        
+        // Search filter
         const searchTerm = searchInput.value.toLowerCase();
         if (searchTerm) {
             filteredProducts = filteredProducts.filter(p => p.title.toLowerCase().includes(searchTerm));
         }
+        
+        // Category filter
         const selectedCategory = categorySelect.value;
         if (selectedCategory !== "All Categories") {
             filteredProducts = filteredProducts.filter(p => p.category === selectedCategory);
         }
+        
+        // Sorting
         const sortBy = sortSelect.value;
         if (sortBy === "Price: Low to High") filteredProducts.sort((a, b) => a.price - b.price);
         else if (sortBy === "Price: High to Low") filteredProducts.sort((a, b) => b.price - a.price);
@@ -169,16 +175,25 @@ document.addEventListener("DOMContentLoaded", () => {
         displayProducts(filteredProducts);
     }
 
+    // --- ## التعديل هنا: بنقرأ الـ category من اللينك ## ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryFromUrl = urlParams.get('category');
+    
     // Initialize the page
     const categories = [...new Set(allProducts.map(p => p.category))];
     categorySelect.innerHTML = '<option>All Categories</option>';
-    categories.forEach(cat => categorySelect.innerHTML += `<option value="${cat}">${cat}</option>`);
+    categories.forEach(cat => {
+        // لو الـ category اللي جاي من اللينك هو نفس الـ category الحالي، بنخليه هو اللي مختار
+        const selected = (cat === categoryFromUrl) ? 'selected' : '';
+        categorySelect.innerHTML += `<option value="${cat}" ${selected}>${cat}</option>`;
+    });
 
     searchInput.addEventListener("input", applyFiltersAndSort);
     categorySelect.addEventListener("change", applyFiltersAndSort);
     sortSelect.addEventListener("change", applyFiltersAndSort);
 
-    displayProducts(allProducts);
+    // بنشغل الفلترة أول ما الصفحة تفتح عشان لو فيه category جاي في اللينك، يتطبق على طول
+    applyFiltersAndSort(); 
 });
 
 

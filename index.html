@@ -11,58 +11,135 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="header-container container">
-            <a href="/index.html" class="logo">
-                <span class="logo-icon fs-5 fw-bolder">E</span>
-                EcomStore
-            </a>
-            <nav class="nav-links d-none d-md-flex">
-                <a href="/products/products.html" class="fs-6 fw-bold">Products</a>
-                <a href="/products/products.html" class="fs-6 fw-bold">Categories</a>
-            </nav>
-            <div class="auth-section d-md-flex align-items-center">
-                <!-- للزوار -->
-                <a href="/auth/signin/signin.html" id="loginLink" class="btn btn-outline login-btn">Login</a>
-                <a href="/auth/signup/signup.html" id="registerLink" class="btn btn-dark signup-btn">Sign Up</a>
-
-                <!-- للمستخدم المسجل -->
-                <div class="d-flex align-items-center justify-content-center">
-                    <a href="/cart/cart.html" id="cartLink" class="nav-link ms-3 position-relative"
-                        style="display:none;">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span id="cart-count"
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                            style="display: none;">0</span>
-                    </a>
-                    <a href="/auth/profile/profile.html" id="profileLink" class="nav-link ms-3" style="display:none;"><i
-                            class="fas fa-user"></i></a>
-                </div>
-                <!-- زرار الخروج هيتضاف هنا بالجافاسكربت -->
-            </div>
-            <!-- <button class="navbar-toggler d-md-none border-0 bg-transparent" type="button" data-bs-toggle="collapse"
-                data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fas fa-bars" style="font-size: 20px; color: #0f172a"></i>
-            </button> -->
+<!-- Header -->
+<header class="header">
+    <div class="header-container container">
+        <a href="/index.html" class="logo">
+            <span class="logo-icon">E</span>
+            EcomStore
+        </a>
+        <nav class="nav-links d-none d-md-flex">
+            <a href="/products/products.html">Products</a>
+            <a href="/categories/categories.html">Categories</a>
         </nav>
-        <div class="collapse d-md-none" id="mobileMenu">
-            <!-- Mobile nav content can be added here -->
+        <div class="search-section">
+            <input type="text" class="search-input" placeholder="Search products..." />
+            <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
         </div>
-    </header>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1 class="hero-title">Welcome to EcomStore</h1>
-            <p class="hero-subtitle">
-                Discover amazing products from trusted sellers. Shop with confidence
-                and enjoy fast, secure delivery.
-            </p>
-            <div class="hero-buttons">
-                <a href="/products/products.html" class="btn btn-dark">Shop Now</a>
-                <a href="/auth/signup/signup.html" id="join-seller-btn" class="btn btn-outline">Join as Seller</a>
+
+        <!-- Desktop Auth Section -->
+        <div class="auth-section d-none d-md-flex align-items-center">
+            <!-- للزوار -->
+            <a href="/auth/signin/signin.html" id="loginLink" class="btn btn-outline login-btn">Login</a>
+            <a href="/auth/signup/signup.html" id="registerLink" class="btn btn-dark signup-btn">Sign Up</a>
+            
+            <!-- للمستخدم المسجل -->
+            <a href="/cart/cart.html" id="cartLink" class="nav-link ms-3 position-relative" style="display:none;">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">0</span>
+            </a>
+
+            <!-- User Profile Dropdown -->
+            <div class="dropdown" id="profileDropdown" style="display: none;">
+                <a href="#" class="nav-link ms-3" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="/auth/profile/profile.html">My Profile</a></li>
+                    <li><a class="dropdown-item" href="/orders/orders.html">My Orders</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">Logout</a></li>
+                </ul>
             </div>
+        </div>
+
+        <!-- Mobile Menu Toggler -->
+        <button class="navbar-toggler d-md-none border-0 bg-transparent" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <i class="fas fa-bars" style="font-size: 20px; color: #0f172a"></i>
+        </button>
+    </div>
+
+    <!-- Offcanvas Mobile Menu -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">EcomStore</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <nav class="nav-links d-flex flex-column gap-3 mb-4">
+                <a href="/products/products.html">Products</a>
+                <a href="/categories/categories.html">Categories</a>
+            </nav>
+            <hr>
+            <!-- Links for logged-in users (mobile) -->
+            <div id="mobile-user-links" class="d-flex flex-column gap-3" style="display: none;" style="color: aqua;">
+                <a href="/auth/profile/profile.html"><i class="fas fa-user fa-fw me-2 "></i>My Profile</a>
+                <a href="/orders/orders.html"><i class="fas fa-box fa-fw me-2"></i>My Orders</a>
+                <a href="#" id="mobile-logoutBtn" class="text-danger"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Logout</a>
+            </div>
+            <!-- Links for guests (mobile) -->
+            <div id="mobile-guest-links" style="display: none;">
+                <a href="/auth/signin/signin.html" class="btn btn-outline-dark w-100 mb-2">Login</a>
+                <a href="/auth/signup/signup.html" class="btn btn-dark w-100">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</header>
+    <!-- Hero Section -->
+    <section class="hero-slider">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1920&auto=format&fit=crop" class="d-block w-100" alt="New Arrivals">
+                    <div class="carousel-caption d-none d-md-flex">
+                        <div>
+                            <h1 class="hero-title">Welcome to EcomStore</h1>
+                            <p class="hero-subtitle">
+                                Discover amazing products from trusted sellers. Shop with confidence
+                                and enjoy fast, secure delivery.
+                            </p>
+                            <div class="hero-buttons">
+                                <a href="/products/products.html" class="btn btn-light btn-lg">Shop Now &rarr;</a>
+                                <a href="/auth/signup/signup.html" id="join-seller-btn" class="btn btn-outline-light btn-lg">Join as Seller</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1920&auto=format&fit=crop" class="d-block w-100" alt="Electronics Sale">
+                    <div class="carousel-caption d-none d-md-flex">
+                        <div>
+                            <h1 class="hero-title">Latest Gadgets</h1>
+                            <p class="hero-subtitle">Explore our collection of modern electronics and accessories.</p>
+                            <a href="/products/products.html" class="btn btn-light btn-lg">Explore Deals</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1920&auto=format&fit=crop" class="d-block w-100" alt="Fashion Trends">
+                    <div class="carousel-caption d-none d-md-flex">
+                        <div>
+                            <h1 class="hero-title">Top Fashion Trends</h1>
+                            <p class="hero-subtitle">Find your new favorite style from our curated fashion collection.</p>
+                            <a href="/products/products.html" class="btn btn-light btn-lg">Discover More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </section>
 
@@ -114,7 +191,7 @@
         </div>
 
         <div class="products-grid">
-            <!-- المنتجات المميزة هتتعرض هنا بالجافاسكربت -->
+
         </div>
 
         <div class="text-center my-4">
@@ -130,11 +207,7 @@
                 Join thousands of sellers who trust EcomStore to grow their business.
                 Start selling today!
             </p>
-            <button class="btn btn-light fw-semibold px-4 py-2 rounded-2 seller-cta-btn">
-                <a href="./auth/signin/signin.html" class="text-dark text-decoration-none">
-                    Get Started as Seller
-                </a>
-            </button>
+            <a href="/auth/signup/signup.html" id="join-seller-btn" class="btn btn-light fw-semibold px-4 py-2 rounded-2 seller-cta-btn">Get Started as Seller</a>
         </div>
     </section>
 
@@ -161,7 +234,7 @@
                 <div class="col-6 col-md-3 mb-4">
                     <h5 class="footer-heading">Shop</h5>
                     <a class="footer-link" href="/products/products.html">All Products</a>
-                    <a class="footer-link" href="#">Categories</a>
+                    <a class="footer-link" href="/categories/categories.html">Categories</a>
                     <a class="footer-link" href="#">Special Deals</a>
                     <a class="footer-link" href="#">New Arrivals</a>
                 </div>

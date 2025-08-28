@@ -14,8 +14,14 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         };
         // بنخزن بيانات الأدمن في ال sessionStorage
         sessionStorage.setItem("loggedInUser", JSON.stringify(adminUser));
-        alert("Admin login successful! Redirecting to dashboard...");
-        window.location.href = "/admin/admin.html"; // بنوديه لصفحة الأدمن على طول
+            Swal.fire({
+            title: "Admin login successful! Redirecting to dashboard...",
+            icon: "success",
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/admin/admin.html";
+            }
+            });
         return; // بنوقف الكود هنا عشان منطبقش عليه منطق المستخدم العادي
     }
 
@@ -31,12 +37,24 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
         if (foundUser && foundUser.password === password) {
             sessionStorage.setItem("loggedInUser", JSON.stringify(foundUser));
-            alert("Login successful!");
-            window.location.href = "/index.html";
+            Swal.fire({
+            title: "Login successful!",
+            icon: "success",
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/index.html";
+            }
+            });
         } else {
-            alert("Invalid email or password!");
-        }
+            Swal.fire({
+            title: "Invalid email or password!",
+            icon: "error",
+            });
+            }
     } else {
-        alert("No account found. Please register first.");
+            Swal.fire({
+            title: "No account found. Please register first.",
+            icon: "error",
+            });
     }
 });

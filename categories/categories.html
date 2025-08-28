@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All Products - EcomStore</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - EcomStore</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="./products.css">
+    <link rel="stylesheet" href="../assets/css/main.css"> <!-- Assuming a main css file -->
+    <link rel="stylesheet" href="categories.css">
     <link rel="stylesheet" href="/assets/css/index.css">
-
 </head>
+<body class="bg-light">
 
-<body>
 <!-- Header -->
 <header class="header">
     <div class="header-container container">
@@ -89,38 +87,19 @@
         </div>
     </div>
 </header>
-    
-    <!-- Main Content -->
-    <main class="main-container container">
-        <div class="page-header">
-            <h1 class="page-title">All Products</h1>
-            <p class="page-subtitle">Discover amazing products from our trusted sellers</p>
+
+    <main class="container my-5">
+        <div class="page-header text-center">
+            <h1 class="page-title">Shop by Category</h1>
+            <p class="page-subtitle">Find what you're looking for with our curated categories.</p>
         </div>
 
-        <div class="filters-section">
-            <div class="search-filter">
-                <input type="text" class="filter-input" placeholder="Search products..." />
-                <span class="filter-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-            </div>
-            <div class="category-filter">
-                <select class="filter-select">
-                    <option>All Categories</option>
-                    <!-- Categories will be added by JS -->
-                </select>
-            </div>
-            <div class="sort-filter">
-                <select class="filter-select">
-                    <option>Name</option>
-                    <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="products-grid">
-            <!-- Products will be loaded here by JavaScript. -->
+        <!-- Categories will be loaded here -->
+        <div id="categories-container" class="row g-4 mt-4">
+            <!-- This area will be filled by JavaScript -->
         </div>
     </main>
+    <hr>
     <!-- Footer -->
     <footer class="site-footer bg-light">
         <div class="container py-5">
@@ -173,8 +152,9 @@
             </div>
         </div>
     </footer>
+
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="./products.js"></script>
-    <script src="/assets/js/index.js"></script>
+    <script src="/assets/js/index.js"></script> <!-- السكربت الرئيسي -->
+    <script src="categories.js"></script>
 </body>
 </html>
