@@ -1,4 +1,5 @@
 const addProductBtn = document.querySelector(`#add-product-btn`);
+const addFirstProductBtn = document.querySelector("#add-first-product-btn");
 const addProductForm = document.querySelector(`#add-product-form`);
 const updateProductForm = document.querySelector("#update-product-form");
 const cancelAddBtn = document.querySelector("#cancel-add-product");
@@ -11,14 +12,14 @@ const price = document.querySelector("#price");
 const category = document.getElementById("category");
 const stock = document.querySelector("#stock");
 const productImg = document.querySelector("#product-img");
-const noAddedProductsScreen = document.querySelector("#no-added-products")
+const noAddedProductsScreen = document.querySelector("#no-added-products");
 const productsTable = document.querySelector("#products-table");
 const noProductsYet = document.querySelector("#no-products-yet");
 const totalProductsData = document.querySelector("#total-products");
 const revenueData = document.querySelector("#revenue");
 const lowStock = document.querySelector("#low-stock");
 const outOfStock = document.querySelector("#out-of-stock");
- let products = JSON.parse(localStorage.getItem("products")) || [];
+let products = JSON.parse(localStorage.getItem("products")) || [];
 
 totalProductsData.textContent = products.length;
 
@@ -26,6 +27,14 @@ revenueData.textContent = "$" + calcRevenue();
 lowStock.textContent = calcLowStock();
 outOfStock.textContent = calcOutofStock();
 
+function whenNoProuducts() {
+  if (products.length == 0) {
+    productsTable.classList.add("d-none");
+    noAddedProductsScreen.classList.remove("d-none");
+    noAddedProductsScreen.classList.add("d-flex");
+  }
+}
+whenNoProuducts();
 function calcRevenue() {
   let sum = 0;
   let products = JSON.parse(localStorage.getItem("products")) || [];
@@ -45,6 +54,11 @@ function calcOutofStock() {
 }
 
 addProductBtn.addEventListener("click", function () {
+  console.log("add-product-btn clicked");
+  addProductForm.classList.remove("d-none");
+  addProductForm.classList.add("d-flex");
+});
+addFirstProductBtn.addEventListener("click", function () {
   console.log("add-product-btn clicked");
   addProductForm.classList.remove("d-none");
   addProductForm.classList.add("d-flex");
@@ -107,38 +121,35 @@ function displayNewProductInSellerDashboard() {
   products.map((product) => {
     let createdtr = document.createElement("tr");
     tbody.appendChild(createdtr);
-
-    let tdImg = document.createElement("img");
-    tdImg.src = product.image;
-    tdImg.style.width = "50px"
-    createdtr.appendChild(tdImg);
-
-    let tdTitle = document.createElement("td");
-    tdTitle.textContent = product.title;
-    createdtr.appendChild(tdTitle);
-
-    let tdCategory = document.createElement("td");
-    tdCategory.textContent = product.category;
-    createdtr.appendChild(tdCategory);
-
-    let tdPrice = document.createElement("td");
-    tdPrice.textContent = `$${product.price}`;
-    createdtr.appendChild(tdPrice);
-
-    let tdStock = document.createElement("td");
-    tdStock.textContent = product.stock;
-    createdtr.appendChild(tdStock);
-
-    let tdStatus = document.createElement("td");
-    tdStatus.innerHTML =
-      product.stock > 0
+    createdtr.innerHTML = `
+    <td class="d-flex align-items-center">
+      <img src="${product.image}" style="width:30px; margin-right:10px;"/>
+      <div>
+        <p id="title" class="fw-medium">${product.title
+          .split(" ")
+          .slice(0, 3)
+          .join(" ")}</p>
+      <p class="text-muted 
+       d-md-block">${product.description
+         .split(" ")
+         .slice(0, 5)
+         .join(" ")}...</p>
+      </div>
+    </td>
+    <td>${
+      product.category.charAt(0).toUpperCase() + product.category.slice(1)
+    }</td>
+    <td>$${product.price.toFixed(2)}</td>
+    <td>${product.stock} </td>
+    <td>${
+      product.stock
         ? `<span class="stock-status-dark badge bg-dark px-3 py-2">In Stock</span>`
-        : `<span class="stock-status-danger badge bg-danger px-3 py-2">Out of Stock</span>`;
-    createdtr.appendChild(tdStatus);
+        : `<span class="stock-status-danger badge bg-danger px-3 py-2">Out of Stock</span>`
+    }</td>`;
 
     let tdActions = document.createElement("td");
     tdActions.innerHTML = `<div class="d-flex gap-2">
-                                        <button onclick = "dispalyDetailsofNewProduct()" class="btn btn-sm btn-outline-secondary"><i
+                                        <button onclick = "dispalyDetailsofNewProduct(${product.id})" class="btn btn-sm btn-outline-secondary"><i
                                                 class="fa-regular fa-eye"></i></button>
                                         <button onclick = "editNewProduct(${product.id}, this)" class="btn btn-sm btn-outline-warning"><i
                                                 class="fa-solid fa-edit"></i></button>
@@ -149,8 +160,8 @@ function displayNewProductInSellerDashboard() {
   });
 }
 
-function dispalyDetailsofNewProduct() {
-  window.location.href = "../productdetails/productdetails.html";
+function dispalyDetailsofNewProduct(id) {
+  window.location.href = "../productdetails/productdetails.html?id=" + id;
 }
 
 function editNewProduct(id) {
@@ -199,8 +210,7 @@ function editNewProduct(id) {
     localStorage.setItem("products", JSON.stringify(products));
 
     // 2- add update to ui
-    displayNewProductInSellerDashboard()
-
+    displayNewProductInSellerDashboard();
   });
 }
 

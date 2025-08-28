@@ -3,7 +3,7 @@
     --secondary-color: #708292;
 }
 
-h1 {
+h1, #title {
     color: var(--main-color);
 }
 
