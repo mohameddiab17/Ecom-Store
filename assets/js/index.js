@@ -274,7 +274,7 @@ function handleNavbar() {
       user.accountType.toLowerCase() === "seller"
     ) {
       if (!document.querySelector('.nav-links a[href="/seller/seller.html"]')) {
-        const sellerDashboardLink = `<a href="/seller/seller.html">Seller Dashboard</a>`;
+        const sellerDashboardLink = `<a href="/seller/seller.html" class="fs-6 fw-bold">Seller Dashboard</a>`;
         navLinksContainers.forEach((container) =>
           container.insertAdjacentHTML("afterbegin", sellerDashboardLink)
         );
@@ -283,7 +283,7 @@ function handleNavbar() {
     }
 
     if (authSection && !document.getElementById("logoutBtn")) {
-      const logoutButtonHTML = `<button id="logoutBtn" class="btn btn-outline-secondary ms-2">Logout</button>`;
+      const logoutButtonHTML = `<button id="logoutBtn" class="btn ms-2 text-danger border-0">Logout</button>`;
       authSection.insertAdjacentHTML("beforeend", logoutButtonHTML);
       document.getElementById("logoutBtn").addEventListener("click", (e) => {
         e.preventDefault();
@@ -343,10 +343,10 @@ function renderProducts(productsArray) {
     // ## --- التعديل هنا: غيرنا اللينك بتاع زرار View Details --- ##
     const detailsPageUrl = `/productdetails/productdetails.html?id=${product.id}`;
 
-    let buttonsHTML = `<a href="${detailsPageUrl}" class="btn btn-outline-dark w-100 view-details-btn">View Details</a>`;
+    let buttonsHTML = `<a href="${detailsPageUrl}" class="btn btn btn-light w-100 mt-3 view-details-btn">View Details</a>`;
     if (loggedInUser) {
       buttonsHTML = `
-                <a href="${detailsPageUrl}" class="btn btn-outline-dark w-100 view-details-btn">View Details</a>
+                <a href="${detailsPageUrl}" class="btn btn btn-light w-100 mt-3 view-details-btn">View Details</a>
                 <a href="#" class="btn btn-dark w-100 mt-2 add-to-cart-btn">Add to Cart</a>
             `;
     }

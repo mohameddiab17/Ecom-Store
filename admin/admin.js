@@ -7,16 +7,18 @@ const usersData = JSON.parse(localStorage.getItem("usersPublic")) || [];
 console.log(usersData);
 
 const OrderUserData = JSON.parse(localStorage.getItem("userOrders")) || [];
-console.log(OrderUserData)
+console.log(OrderUserData);
 
 // function for status changes
 function getStatusChange(current, previous) {
   if (current > previous) {
-    return `<p class="text-success"><i class="fa-solid fa-arrow-up"></i> +${(current - previous).toFixed(0)
-      } from last week</p>`;
+    return `<p class="text-success"><i class="fa-solid fa-arrow-up"></i> +${(
+      current - previous
+    ).toFixed(0)} from last week</p>`;
   } else if (current < previous) {
-    return `<p class="text-danger"><i class="fa-solid fa-arrow-down"></i> -${(previous - current).toFixed(0)
-      } from last week</p>`;
+    return `<p class="text-danger"><i class="fa-solid fa-arrow-down"></i> -${(
+      previous - current
+    ).toFixed(0)} from last week</p>`;
   } else {
     return `<p class="text-muted">No change from last week</p>`;
   }
@@ -31,9 +33,12 @@ document.getElementById("products-status").innerHTML = getStatusChange(
 
 // ------------------ Revenue Card ------------------
 
-let sum =products.reduce((acc, p) => acc + p.price*p.stock, 0);
+let sum = products.reduce((acc, p) => acc + p.price , 0);
 document.getElementById("price").innerText = `$${sum.toFixed(2)}`;
-document.getElementById("revenue-status").innerHTML = getStatusChange(sum, 1000);
+document.getElementById("revenue-status").innerHTML = getStatusChange(
+  sum,
+  1000
+);
 
 // ------------------ Users & Sellers ------------------
 const users = [
@@ -81,14 +86,14 @@ products.forEach((product) => {
       <img src="${product.image}" style="width:30px; margin-right:10px;"/>
       <div>
         <p class="fw-medium">${product.title
-      .split(" ")
-      .slice(0, 3)
-      .join(" ")}</p>
+          .split(" ")
+          .slice(0, 3)
+          .join(" ")}</p>
       <p class="text-muted 
        d-md-block">${product.description
-      .split(" ")
-      .slice(0, 5)
-      .join(" ")}...</p>
+         .split(" ")
+         .slice(0, 5)
+         .join(" ")}...</p>
       </div>
     </td>
     <td>${product.category}</td>
@@ -142,11 +147,13 @@ products.forEach((product) => {
     e.preventDefault();
 
     if (currentProduct) {
-      currentProduct.title = document.getElementById("titleUpdated").value || product.title;
+      currentProduct.title =
+        document.getElementById("titleUpdated").value || product.title;
       currentProduct.price = parseFloat(
         document.getElementById("priceUpdated").value || product.price
       );
-      currentProduct.category = document.getElementById("categoryUpdated").value || product.category;
+      currentProduct.category =
+        document.getElementById("categoryUpdated").value || product.category;
       currentProduct.stock = parseInt(
         document.getElementById("stockUpdated").value || product.stock
       );
@@ -157,7 +164,6 @@ products.forEach((product) => {
     }
   });
 });
-
 
 products.forEach((product) => {
   let deleteBtn = document.querySelectorAll(`.deleteBtn-${product.id}`);
@@ -176,10 +182,8 @@ products.forEach((product) => {
 });
 
 document.querySelector(".close-edit").addEventListener("click", function () {
-  EditProduct.classList.add("d-none")
-})
-
-
+  EditProduct.classList.add("d-none");
+});
 
 // Users Logic
 
@@ -195,20 +199,53 @@ usersData.forEach((user) => {
                   </p>
                 </td>
                 <td>${user.email}</td>
-                <td><span class="role text-capitalize ${user.accountType === 'customer' ? 'role-customer' : 'role-seller'}">${user.accountType}</span></td>
+                <td><span class="role text-capitalize ${
+                  user.accountType === "customer"
+                    ? "role-customer"
+                    : "role-seller"
+                }">${user.accountType}</span></td>
                 <td>
                   <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-secondary "><i class="fa-regular fa-eye"></i></button>
-                    <button class="btn btn-sm btn-outline-danger deleteUserBtn-${user.id}"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn btn-sm btn-outline-secondary user-eye"><i class="fa-regular fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-danger deleteUserBtn-${
+                      user.id
+                    }"><i class="fa-solid fa-trash"></i></button>
                   </div>
                 </td>
   `;
+
   userTableBody.appendChild(row);
 });
 
+const userModal = document.getElementById("userModal");
 
+const userEyes = document.querySelectorAll(".user-eye");
 
-// Delete Users 
+userEyes.forEach((eye, i) => {
+  eye.addEventListener("click", function () {
+    userModal.classList.remove("d-none");
+    userModal.innerHTML = `
+      <div class="custom-modal shadow position-relative " style="max-width: 400px;">
+      <i class="fa-solid fa-xmark close-edit"></i>
+      <div>
+        <h6 class="mb-2 pb-1 border-bottom border-black border-1">User Information</h6>
+        <p class="mb-1"><strong>User Name: </strong>${usersData[i].fullname}</p>
+        <p class="mb-1"><strong>Email:</strong> ${usersData[i].email}</p>
+        <p class="mb-1"><strong>Role:</strong> ${usersData[i].accountType}</p>
+      </div>
+    </div>
+      `;
+    const closeUserMark = document.querySelector("#userModal .close-edit");
+
+    closeUserMark.addEventListener("click", function () {
+      userModal.classList.add("d-none");
+    });
+  });
+});
+
+// Close modal when clicking X
+
+// Delete Users
 
 usersData.forEach((user) => {
   let deleteUserBtn = document.querySelectorAll(`.deleteUserBtn-${user.id}`);
@@ -226,13 +263,9 @@ usersData.forEach((user) => {
   });
 });
 
+// View User Profile
 
-// View User Profile 
-
-
-
-
-// Display Order In Table 
+// Display Order In Table
 let ordersTablesBody = document.getElementById("ordersTable");
 console.log(ordersTablesBody);
 
@@ -267,50 +300,25 @@ document.addEventListener("DOMContentLoaded", () => {
           </td>
         `;
       ordersTablesBody.appendChild(row);
-
     });
   });
 });
 
+// featured / not featured => change in ui and localStrage
+document
+  .querySelectorAll(".btn-featured, .btn-not-featured")
+  .forEach((btn, i) => {
+    btn.addEventListener("click", () => {
+      btn.classList.toggle("btn-featured");
+      btn.classList.toggle("btn-not-featured");
 
+      const isFeatured = btn.classList.contains("btn-featured");
+      btn.textContent = isFeatured ? "Featured" : "Not Featured";
 
-
-
-
-
-// featured / not featured => change in ui
-document.querySelectorAll(".btn-featured, .btn-not-featured").forEach((btn, i) => {
-  btn.addEventListener("click", () => {
-    btn.classList.toggle("btn-featured");
-    btn.classList.toggle("btn-not-featured");
-
-    const isFeatured = btn.classList.contains("btn-featured");
-    btn.textContent = isFeatured ? "Featured" : "Not Featured";
-
-    products[i].featured = isFeatured;
-    localStorage.setItem("products", JSON.stringify(products));
+      products[i].featured = isFeatured;
+      localStorage.setItem("products", JSON.stringify(products));
+    });
   });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const myBtn = document.getElementById("eye");
 const orderModal = document.getElementById("orderModal");

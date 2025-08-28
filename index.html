@@ -11,40 +11,42 @@
 </head>
 
 <body>
-<!-- Header -->
+    <!-- Header -->
     <header class="header">
-        <div class="header-container container">
+        <nav class="header-container container">
             <a href="/index.html" class="logo">
-                <span class="logo-icon">E</span>
+                <span class="logo-icon fs-5 fw-bolder">E</span>
                 EcomStore
             </a>
             <nav class="nav-links d-none d-md-flex">
-                <a href="/products/products.html">Products</a>
-                <a href="/products/products.html">Categories</a>
+                <a href="/products/products.html" class="fs-6 fw-bold">Products</a>
+                <a href="/products/products.html" class="fs-6 fw-bold">Categories</a>
             </nav>
-            <div class="search-section">
-                <input type="text" class="search-input" placeholder="Search products..." />
-                <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-            </div>
             <div class="auth-section d-md-flex align-items-center">
                 <!-- للزوار -->
                 <a href="/auth/signin/signin.html" id="loginLink" class="btn btn-outline login-btn">Login</a>
                 <a href="/auth/signup/signup.html" id="registerLink" class="btn btn-dark signup-btn">Sign Up</a>
-                
+
                 <!-- للمستخدم المسجل -->
-                <a href="/cart/cart.html" id="cartLink" class="nav-link ms-3 position-relative" style="display:none;">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">0</span>
-                </a>
-                <a href="/auth/profile/profile.html" id="profileLink" class="nav-link ms-3" style="display:none;"><i class="fas fa-user"></i></a>
+                <div class="d-flex align-items-center justify-content-center">
+                    <a href="/cart/cart.html" id="cartLink" class="nav-link ms-3 position-relative"
+                        style="display:none;">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count"
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                            style="display: none;">0</span>
+                    </a>
+                    <a href="/auth/profile/profile.html" id="profileLink" class="nav-link ms-3" style="display:none;"><i
+                            class="fas fa-user"></i></a>
+                </div>
                 <!-- زرار الخروج هيتضاف هنا بالجافاسكربت -->
             </div>
-            <button class="navbar-toggler d-md-none border-0 bg-transparent" type="button" data-bs-toggle="collapse"
+            <!-- <button class="navbar-toggler d-md-none border-0 bg-transparent" type="button" data-bs-toggle="collapse"
                 data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <i class="fas fa-bars" style="font-size: 20px; color: #0f172a"></i>
-            </button>
-        </div>
+            </button> -->
+        </nav>
         <div class="collapse d-md-none" id="mobileMenu">
             <!-- Mobile nav content can be added here -->
         </div>
@@ -58,7 +60,7 @@
                 and enjoy fast, secure delivery.
             </p>
             <div class="hero-buttons">
-                <a href="/products/products.html" class="btn btn-dark">Shop Now &rarr;</a>
+                <a href="/products/products.html" class="btn btn-dark">Shop Now</a>
                 <a href="/auth/signup/signup.html" id="join-seller-btn" class="btn btn-outline">Join as Seller</a>
             </div>
         </div>
@@ -112,7 +114,7 @@
         </div>
 
         <div class="products-grid">
-    <!-- المنتجات المميزة هتتعرض هنا بالجافاسكربت -->
+            <!-- المنتجات المميزة هتتعرض هنا بالجافاسكربت -->
         </div>
 
         <div class="text-center my-4">
@@ -129,7 +131,9 @@
                 Start selling today!
             </p>
             <button class="btn btn-light fw-semibold px-4 py-2 rounded-2 seller-cta-btn">
-                Get Started as Seller
+                <a href="./auth/signin/signin.html" class="text-dark text-decoration-none">
+                    Get Started as Seller
+                </a>
             </button>
         </div>
     </section>
