@@ -373,21 +373,16 @@ body {
   border-radius: 5px;
 }
 
-.view-details-btn {
+/* .view-details-btn {
   width: 100%;
   padding: 10px;
-  background-color: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 6px;
   font-size: 14px;
-  color: var(--sub-color);
   margin-top: 12px;
-  transition: background-color 0.2s;
-}
+} */
 
-.view-details-btn:hover {
-  background-color: #e9ecef;
-}
+
 
 /* Responsive Design */
 @media (max-width: 1024px) {
