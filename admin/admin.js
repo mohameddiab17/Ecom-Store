@@ -33,7 +33,7 @@ document.getElementById("products-status").innerHTML = getStatusChange(
 
 // ------------------ Revenue Card ------------------
 
-let sum = products.reduce((acc, p) => acc + p.price , 0);
+let sum = products.reduce((acc, p) => acc + p.price, 0);
 document.getElementById("price").innerText = `$${sum.toFixed(2)}`;
 document.getElementById("revenue-status").innerHTML = getStatusChange(
   sum,
@@ -222,7 +222,11 @@ const userModal = document.getElementById("userModal");
 const userEyes = document.querySelectorAll(".user-eye");
 
 userEyes.forEach((eye, i) => {
+  console.log(eye);
   eye.addEventListener("click", function () {
+    console.log("eye");
+    console.log(userModal.classList);
+
     userModal.classList.remove("d-none");
     userModal.innerHTML = `
       <div class="custom-modal shadow position-relative " style="max-width: 400px;">
@@ -269,7 +273,9 @@ usersData.forEach((user) => {
 let ordersTablesBody = document.getElementById("ordersTable");
 console.log(ordersTablesBody);
 
+
 document.addEventListener("DOMContentLoaded", () => {
+
   ordersTablesBody.innerHTML = "";
 
   OrderUserData.forEach((order) => {
@@ -285,12 +291,27 @@ document.addEventListener("DOMContentLoaded", () => {
             <p class="text-muted">${user.email}</p>
           </td>
           <td>$${order.total}</td>
-           <td><span class="status shipped"><i class="fa-solid fa-microchip"></i>${order.status}</span>
+           <td> 
+            <div class="d-flex align-items-center gap-2 p-3" style="max-width:300px;">
+              <!-- Span status -->
+              <span id="order-status" class="badge bg-light text-dark d-flex align-items-center gap-1 p-2 border">
+                <i class="fa-solid fa-truck"></i> Shipped
+              </span>
+
+              <!-- Dropdown -->
+              <select id="status-select" class="form-select form-select-sm w-auto">
+                <option value="shipped" selected>Shipped</option>
+                <option value="delivered">Delivered</option>
+                <option value="processing">Processing</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+
+            </div>
            </td>
                 <td>22/10/2024</td>
           <td>
             <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-outline-secondary" id="eye">
+              <button onclick = "displayOrderModal(${order.id})" class="btn btn-sm btn-outline-secondary" id="eye">
                 <i class="fa-regular fa-eye"></i>
               </button>
               <button class="btn btn-sm btn-outline-danger">
@@ -299,11 +320,53 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           </td>
         `;
-      ordersTablesBody.appendChild(row);
-    });
-  });
-});
 
+      ordersTablesBody.appendChild(row);
+
+      // ----------------------- display the selected status ---------------------
+      const statusSpan = document.getElementById("order-status");
+      const select = document.getElementById("status-select");
+
+      const statusOptions = {
+        shipped: {
+          text: "Shipped",
+          icon: "fa-truck",
+          classes: "bg-light text-primary border",
+        },
+        delivered: {
+          text: "Delivered",
+          icon: "fa-circle-check",
+          classes: "bg-dark text-white",
+        },
+        processing: {
+          text: "Processing",
+          icon: "fa-clock",
+          classes: "bg-dark text-white",
+        },
+        cancelled: {
+          text: "Cancelled",
+          icon: "fa-xmark",
+          classes: "bg-danger text-white",
+        },
+      };
+
+      select.addEventListener("change", () => {
+        const value = select.value;
+        const option = statusOptions[value];
+
+        statusSpan.className = `badge d-flex align-items-center gap-1 p-2 ${option.classes}`;
+        statusSpan.innerHTML = `<i class="fa-solid ${option.icon}"></i> ${option.text}`;
+      });
+      
+    });
+    
+  });
+  
+
+});
+function  displayOrderModal(id) {
+  console.log("clicked", id);
+}
 // featured / not featured => change in ui and localStrage
 document
   .querySelectorAll(".btn-featured, .btn-not-featured")
@@ -319,24 +382,29 @@ document
       localStorage.setItem("products", JSON.stringify(products));
     });
   });
-
-const myBtn = document.getElementById("eye");
 const orderModal = document.getElementById("orderModal");
 const closeModal = document.getElementById("closeModal");
 
-// open modal
-myBtn.addEventListener("click", () => {
-  orderModal.classList.remove("d-none");
-});
 
-// close modal when clicking X
-closeModal.addEventListener("click", () => {
-  orderModal.classList.add("d-none");
-});
+// const myBtn = document.getElementById("eye");
+// const orderModal = document.getElementById("orderModal");
+// const closeModal = document.getElementById("closeModal");
 
-// close modal when clicking outside content
-orderModal.addEventListener("click", (e) => {
-  if (e.target === orderModal) {
-    orderModal.classList.add("d-none");
-  }
-});
+// // open modal
+// myBtn.addEventListener("click", () => {
+
+//   orderModal.classList.remove("d-none");
+//   orderModal.classList.add("d-flex")
+// });
+
+// // close modal when clicking X
+// closeModal.addEventListener("click", () => {
+//   orderModal.classList.add("d-none");
+// });
+
+// // close modal when clicking outside content
+// orderModal.addEventListener("click", (e) => {
+//   if (e.target === orderModal) {
+//     orderModal.classList.add("d-none");
+//   }
+// });
