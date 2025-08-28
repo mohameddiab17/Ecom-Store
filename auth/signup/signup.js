@@ -7,29 +7,41 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
     let accountType = document.getElementById("account-type").value.toLowerCase();
 
     const existingUsersEncrypted = localStorage.getItem("users");
-    let users = []; // بنجهز قايمة فاضية
+    let users = [];
 
     if (existingUsersEncrypted) {
-        // لو فيه مستخدمين متخزنين، هنفك تشفيرهم ونحولهم لـ array
         const bytes = CryptoJS.AES.decrypt(existingUsersEncrypted, "mySecretKey");
         const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
         users = JSON.parse(decryptedData);
     }
 
-    // 2. هنتأكد إن الإيميل ده مش متسجل قبل كده
-    const isEmailTaken = users.some(user => user.email === email);
+    let usersPublic = JSON.parse(localStorage.getItem("usersPublic")) || [];
+
+    const isEmailTaken =
+        users.some(user => user.email === email) ||
+        usersPublic.some(user => user.email === email);
+
     if (isEmailTaken) {
         alert("This email is already registered!");
-        return; // هنوقف العملية عشان الإيميل ميتكررش
+        return;
     }
 
-    // 3. هنضيف المستخدم الجديد للقائمة
-    const newUser = { fullname, email, password, accountType };
-    users.push(newUser);
+    function generateId() {
+        return 'id-' + Date.now() + '-' + Math.floor(Math.random() * 10000);
+    }
 
-    // 4.  local storage هنشفر القايمة المحدثة كلها ونخزنها تاني في ال
-    const updatedUsersEncrypted = CryptoJS.AES.encrypt(JSON.stringify(users), "mySecretKey").toString();
-    localStorage.setItem("users", updatedUsersEncrypted); // بنخزن في "users"
+    const newUser = { id: generateId(), fullname, email, password, accountType };
+    const publicUser = { id: newUser.id, fullname, email, accountType };
+    users.push(newUser);
+    usersPublic.push(publicUser);
+
+    const updatedUsersEncrypted = CryptoJS.AES.encrypt(
+        JSON.stringify(users),
+        "mySecretKey"
+    ).toString();
+    localStorage.setItem("users", updatedUsersEncrypted);
+
+    localStorage.setItem("usersPublic", JSON.stringify(usersPublic));
 
     alert("Account created successfully! You can now login.");
     window.location.href = "/auth/signin/signin.html";
