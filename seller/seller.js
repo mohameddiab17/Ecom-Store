@@ -21,11 +21,18 @@ const lowStock = document.querySelector("#low-stock");
 const outOfStock = document.querySelector("#out-of-stock");
 let products = JSON.parse(localStorage.getItem("products")) || [];
 
-totalProductsData.textContent = products.length;
-
-revenueData.textContent = "$" + calcRevenue();
-lowStock.textContent = calcLowStock();
-outOfStock.textContent = calcOutofStock();
+if (!products) {
+  productsTable.classList.add("d-none");
+  noAddedProductsScreen.classList.remove("d-none");
+  noAddedProductsScreen.classList.add("d-flex");
+}
+function updateCards() {
+  totalProductsData.textContent = products.length;
+  revenueData.textContent = "$" + calcRevenue();
+  lowStock.textContent = calcLowStock();
+  outOfStock.textContent = calcOutofStock();
+}
+updateCards();
 
 function whenNoProuducts() {
   if (products.length == 0) {
@@ -35,6 +42,7 @@ function whenNoProuducts() {
   }
 }
 whenNoProuducts();
+
 function calcRevenue() {
   let sum = 0;
   let products = JSON.parse(localStorage.getItem("products")) || [];
@@ -211,16 +219,36 @@ function editNewProduct(id) {
 
     // 2- add update to ui
     displayNewProductInSellerDashboard();
+    updateCards();
   });
 }
 
 function removeNewProduct(id, btn) {
-  let products = JSON.parse(localStorage.getItem("products")) || [];
+  Swal.fire({
+    title: "Are you sure ?",
+    text: "You won't be able to revert this product!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#0F172A",
+    cancelButtonColor: "#a1a1a1ff",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success",
+      });
+      let products = JSON.parse(localStorage.getItem("products")) || [];
 
-  let newProducts = products.filter((product) => product.id !== id);
+      let newProducts = products.filter((product) => product.id !== id);
 
-  localStorage.setItem("products", JSON.stringify(newProducts));
+      localStorage.setItem("products", JSON.stringify(newProducts));
 
-  let row = btn.closest("tr");
-  if (row) row.remove();
+      let row = btn.closest("tr");
+      if (row) row.remove();
+      
+    }
+    updateCards();
+  });
 }

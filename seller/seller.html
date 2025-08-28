@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../assets/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="./seller.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -110,18 +112,11 @@
                     </table>
                 </div>
 
-            </div>
-        </div>
+                <!-- No Products ? Add your first product -->
+                 <div id="no-added-products" class="py-5  d-none  ">
+            <div class=" w-100 rounded p-4 bg-white d-flex flex-column gap-2">
 
-        <div id="no-added-products" class="py-5 d-none">
-            <div class="border rounded p-4 bg-white d-flex flex-column gap-2">
-
-                <!-- title
-                  & decriptoin-->
-                <h4 class="fw-bold">Your Products</h4>
-                <p class="text-muted">Manage your product inventory and pricing</p>
-
-
+                
                 <div class="d-flex flex-column align-items-center text-center">
 
                     <!-- box icon-->
@@ -142,6 +137,11 @@
 
             </div>
         </div>
+
+            </div>
+        </div>
+
+        
 
     </div>
 
