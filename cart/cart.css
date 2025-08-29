@@ -20,18 +20,7 @@
       padding: 20px;
       background: #fff;
     }
-    .footer {
-        background-color: #ffffff;
-        border-top: 1px solid #e9ecef;
-    }
-    .footer a {
-        color: #6c757d;
-        text-decoration: none;
-    }
-    .footer a:hover {
-        color: #212529;
-        text-decoration: underline;
-    }
+   
     .rounded{
     width: 100px;
     height: 100px;

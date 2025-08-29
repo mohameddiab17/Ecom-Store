@@ -3,7 +3,10 @@
 const products = JSON.parse(localStorage.getItem("products")) || [];
 console.log(products);
 
-const usersData = JSON.parse(localStorage.getItem("usersPublic")) || [];
+const encrypted = localStorage.getItem("users");
+const bytes = CryptoJS.AES.decrypt(encrypted, "mySecretKey");
+const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+const usersData = JSON.parse(decrypted);
 console.log(usersData);
 
 const OrderUserData = JSON.parse(localStorage.getItem("userOrders")) || [];
@@ -41,35 +44,25 @@ document.getElementById("revenue-status").innerHTML = getStatusChange(
 );
 
 // ------------------ Users & Sellers ------------------
-const users = [
-  { role: "seller" },
-  { role: "seller" },
-  { role: "customer" },
-  { role: "seller" },
-  { role: "customer" },
-  { role: "seller" },
-  { role: "customer" },
-  { role: "customer" },
-  { role: "seller" },
-  { role: "seller" },
-];
 
 // Count sellers & customers
-let sellerCount = users.filter((u) => u.role === "seller").length;
-let customerCount = users.filter((u) => u.role === "customer").length;
+let sellerCount = usersData.filter((u) => u.accountType === "seller").length;
+let customerCount = usersData.filter(
+  (u) => u.accountType === "customer"
+).length;
 
 // Display counts
 document.getElementById("users-nums").innerText = customerCount;
 document.getElementById("sellers-nums").innerText = sellerCount;
 
-// Show status change (assuming last week: 5 customers, 4 sellers for demo)
+// Show status change
 document.getElementById("users-status").innerHTML = getStatusChange(
   customerCount,
-  5
+  usersData.length
 );
 document.getElementById("sellers-status").innerHTML = getStatusChange(
   sellerCount,
-  4
+  usersData.length
 );
 
 // Products Logic
@@ -247,11 +240,11 @@ userEyes.forEach((eye, i) => {
   });
 });
 
-// Close modal when clicking X
-
 // Delete Users
 
 usersData.forEach((user) => {
+  console.log(user);
+  
   let deleteUserBtn = document.querySelectorAll(`.deleteUserBtn-${user.id}`);
 
   deleteUserBtn.forEach((btn) => {
@@ -273,9 +266,7 @@ usersData.forEach((user) => {
 let ordersTablesBody = document.getElementById("ordersTable");
 console.log(ordersTablesBody);
 
-
 document.addEventListener("DOMContentLoaded", () => {
-
   ordersTablesBody.innerHTML = "";
 
   OrderUserData.forEach((order) => {
@@ -357,14 +348,10 @@ document.addEventListener("DOMContentLoaded", () => {
         statusSpan.className = `badge d-flex align-items-center gap-1 p-2 ${option.classes}`;
         statusSpan.innerHTML = `<i class="fa-solid ${option.icon}"></i> ${option.text}`;
       });
-      
     });
-    
   });
-  
-
 });
-function  displayOrderModal(id) {
+function displayOrderModal(id) {
   console.log("clicked", id);
 }
 // featured / not featured => change in ui and localStrage
@@ -384,7 +371,6 @@ document
   });
 const orderModal = document.getElementById("orderModal");
 const closeModal = document.getElementById("closeModal");
-
 
 // const myBtn = document.getElementById("eye");
 // const orderModal = document.getElementById("orderModal");
