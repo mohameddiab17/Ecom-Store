@@ -1,129 +1,170 @@
 /* General Link Styling */
-a {
-    color: #212529;
-    text-decoration: none;
+        a {
+            color: #212529;
+            text-decoration: none;
+        }
+
+        .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: #000;
+    }
+    .logo-icon {
+      background: #007bff;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-right: 5px;
+    }
+
+    .navbar {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid #e9ecef;
+    padding: 12px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-/* Main Product Gallery */
-.main-image-container {
-    position: relative;
-}
+        /* Main Product Gallery */
+        .main-image-container {
+            position: relative;
+        }
 
-.main-image {
-    width: 100%;
-    height: auto;
-    max-height: 500px; /* Ensures the image doesn't get too tall on large screens */
-    object-fit: contain; /* Prevents the image from being stretched or cropped */
-    border-radius: 0.5rem;
-    border: 1px solid #dee2e6;
-}
+        .main-image {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 0.5rem;
+            border: 1px solid #dee2e6;
+        }
 
-/* Wishlist Icon on Main Image */
-.wishlist-icon {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 1.5rem;
-    color: #6c757d;
-    cursor: pointer;
-    transition: color 0.2s;
-}
+        /* Wishlist Icon on Main Image */
+        .wishlist-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: #6c757d;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
 
-.wishlist-icon:hover {
-    color: #dc3545; /* Red color on hover */
-}
+        .wishlist-icon:hover {
+            color: #dc3545;
+        }
 
-/* Thumbnail Images */
-.thumbnails img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain; /* Changed to contain to match main image */
-    cursor: pointer;
-    border: 2px solid transparent;
-    border-radius: 0.375rem;
-    transition: border-color 0.2s;
-}
+        /* Thumbnail Images */
+        .thumbnails img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 0.375rem;
+            transition: border-color 0.2s;
+        }
 
-.thumbnails img:hover,
-.thumbnails img.active {
-    border-color: #212529; /* Dark border for active/hovered thumbnail */
-}
+        .thumbnails img:hover,
+        .thumbnails img.active {
+            border-color: #212529;
+        }
 
-/* Quantity Input Styling */
-.quantity-input {
-    max-width: 120px;
-}
+        /* Quantity Input Styling */
+        .quantity-input {
+            max-width: 120px;
+        }
 
-/* Button Styling */
-.btn-dark {
-    background-color: #212529;
-    border-color: #212529;
-}
+        /* Button Styling */
+        .btn-dark {
+            background-color: #212529;
+            border-color: #212529;
+        }
 
-/* ## --- تصميم قسم المنتجات ذات الصلة --- ## */
+        .footer {
+            background-color: #ffffff;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer a {
+            color: #6c757d;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #212529;
+            text-decoration: underline;
+        }
 
-#related-products-section .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* بيعمل grid متجاوب للكروت */
-    gap: 1.5rem;
-}
+        .back-link {
+            color: #212529;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: #0d6efd;
+        }
 
-#related-products-section .product-card {
-    border: 1px solid #e9ecef;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    transition: all 0.2s ease-in-out;
-    background-color: #fff;
-    text-align: center;
-}
+        /* Related Products Section */
+        #related-products-section .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
 
-#related-products-section .product-card:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transform: translateY(-3px);
-}
+        #related-products-section .product-card {
+            border: 1px solid #e9ecef;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: all 0.2s ease-in-out;
+            background-color: #fff;
+            text-align: center;
+        }
 
-#related-products-section .product-image img {
-    width: 100%;
-    height: 180px;
-    object-fit: contain;
-    padding: 1rem;
-}
+        #related-products-section .product-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
 
-#related-products-section .product-info {
-    padding: 1rem;
-}
+        #related-products-section .product-image img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            padding: 1rem;
+        }
 
-#related-products-section .product-title {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+        #related-products-section .product-info {
+            padding: 1rem;
+        }
 
-#related-products-section .product-price {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #212529;
-}
+        #related-products-section .product-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-/* بنخفي العناصر اللي مش محتاجينها في الكروت الصغيرة */
-#related-products-section .product-category,
-#related-products-section .add-to-cart-btn, /* بنخفي زرار إضافة للسلة بس */
-#related-products-section .product-footer .product-category {
-    display: none;
-}
+        #related-products-section .product-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #212529;
+        }
 
-#related-products-section .product-footer {
-    justify-content: center; /* بنخلي السعر في النص */
-}
+        #related-products-section .product-category,
+        #related-products-section .add-to-cart-btn,
+        #related-products-section .product-footer .product-category {
+            display: none;
+        }
 
-/* ## --- الإضافة الجديدة هنا: تعديل شكل زرار التفاصيل في المنتجات ذات الصلة --- ## */
-#related-products-section .view-details-btn {
-    display: inline-block !important; /* بنضمن إنه ظاهر */
-    width: auto !important; /* بنلغي الـ w-100 */
-    padding: 0.25rem 0.75rem; /* بنصغر حجمه */
-    font-size: 0.875rem; /* بنصغر الخط */
-    margin-top: 0.5rem; /* بنضيف مسافة فوقه */
-}
+        #related-products-section .product-footer {
+            justify-content: center;
+        }
+
+        #related-products-section .view-details-btn {
+            display: inline-block !important;
+            width: auto !important;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }

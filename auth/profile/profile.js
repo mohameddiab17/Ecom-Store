@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const loggedInUserJSON = sessionStorage.getItem("loggedInUser");
 
         if (!loggedInUserJSON) {
-            alert("You must be logged in to view this page.");
             window.location.href = "/auth/signin/signin.html";
             return;
         }
