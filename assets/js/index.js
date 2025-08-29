@@ -206,3 +206,16 @@ document.addEventListener("click", function (e) {
     }, 1500);
   }
 });
+
+// Scroll reveal effect
+const reveals = document.querySelectorAll('.reveal');
+window.addEventListener('scroll', () => {
+  const windowHeight = window.innerHeight;
+  reveals.forEach(el => {
+    const revealTop = el.getBoundingClientRect().top;
+    if (revealTop < windowHeight - 100) {
+      el.classList.add('visible');
+    }
+  });
+});
+
