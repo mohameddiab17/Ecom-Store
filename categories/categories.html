@@ -12,83 +12,9 @@
 </head>
 <body class="bg-light">
 
-<!-- Header -->
-<header class="header">
-    <div class="header-container container">
-        <a href="/index.html" class="logo">
-            <span class="logo-icon">E</span>
-            EcomStore
-        </a>
-        <nav class="nav-links d-none d-md-flex">
-            <a href="/products/products.html">Products</a>
-            <a href="/categories/categories.html">Categories</a>
-        </nav>
-        <div class="search-section">
-            <input type="text" class="search-input" placeholder="Search products..." />
-            <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-        </div>
-
-        <!-- Desktop Auth Section -->
-        <div class="auth-section d-none d-md-flex align-items-center">
-            <!-- للزوار -->
-            <a href="/auth/signin/signin.html" id="loginLink" class="btn btn-outline login-btn">Login</a>
-            <a href="/auth/signup/signup.html" id="registerLink" class="btn btn-dark signup-btn">Sign Up</a>
-            
-            <!-- للمستخدم المسجل -->
-            <a href="/cart/cart.html" id="cartLink" class="nav-link ms-3 position-relative" style="display:none;">
-                <i class="fas fa-shopping-cart"></i>
-                <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">0</span>
-            </a>
-
-            <!-- User Profile Dropdown -->
-            <div class="dropdown" id="profileDropdown" style="display: none;">
-                <a href="#" class="nav-link ms-3" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-user"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="/auth/profile/profile.html">My Profile</a></li>
-                    <li><a class="dropdown-item" href="/orders/orders.html">My Orders</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Toggler -->
-        <button class="navbar-toggler d-md-none border-0 bg-transparent" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-            <i class="fas fa-bars" style="font-size: 20px; color: #0f172a"></i>
-        </button>
-    </div>
-
-    <!-- Offcanvas Mobile Menu -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">EcomStore</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <nav class="nav-links d-flex flex-column gap-3 mb-4">
-                <a href="/products/products.html">Products</a>
-                <a href="/categories/categories.html">Categories</a>
-            </nav>
-            <hr>
-            <!-- Links for logged-in users (mobile) -->
-            <div id="mobile-user-links" class="d-flex flex-column gap-3" style="display: none;" style="color: aqua;">
-                <a href="/auth/profile/profile.html"><i class="fas fa-user fa-fw me-2 "></i>My Profile</a>
-                <a href="/orders/orders.html"><i class="fas fa-box fa-fw me-2"></i>My Orders</a>
-                <a href="#" id="mobile-logoutBtn" class="text-danger"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Logout</a>
-            </div>
-            <!-- Links for guests (mobile) -->
-            <div id="mobile-guest-links" style="display: none;">
-                <a href="/auth/signin/signin.html" class="btn btn-outline-dark w-100 mb-2">Login</a>
-                <a href="/auth/signup/signup.html" class="btn btn-dark w-100">Sign Up</a>
-            </div>
-        </div>
-    </div>
-</header>
 
     <main class="container my-5">
+        <button id="back" class="mb-4 bg-transparent border-0 pointer-event"><i class="fas fa-arrow-left me-2"></i> Back</button>
         <div class="page-header text-center">
             <h1 class="page-title">Shop by Category</h1>
             <p class="page-subtitle">Find what you're looking for with our curated categories.</p>
@@ -99,59 +25,6 @@
             <!-- This area will be filled by JavaScript -->
         </div>
     </main>
-    <hr>
-    <!-- Footer -->
-    <footer class="site-footer bg-light">
-        <div class="container py-5">
-            <div class="row">
-                <!-- Brand -->
-                <div class="col-12 col-md-3 mb-4">
-                    <div class="d-flex align-items-center mb-2">
-                        <div
-                            class="footer-logo-icon d-flex align-items-center justify-content-center rounded-circle text-white fw-bold">
-                            E
-                        </div>
-                        <span class="footer-logo-text ms-2">EcomStore</span>
-                    </div>
-                    <p class="small text-muted mb-0">
-                        Your trusted partner for all your shopping needs. Quality
-                        products, great prices, excellent service.
-                    </p>
-                </div>
-
-                <!-- Shop Links -->
-                <div class="col-6 col-md-3 mb-4">
-                    <h5 class="footer-heading">Shop</h5>
-                    <a class="footer-link" href="/products/products.html">All Products</a>
-                    <a class="footer-link" href="/categories/categories.html">Categories</a>
-                    <a class="footer-link" href="#">Special Deals</a>
-                    <a class="footer-link" href="#">New Arrivals</a>
-                </div>
-
-                <!-- Support Links -->
-                <div class="col-6 col-md-3 mb-4">
-                    <h5 class="footer-heading">Support</h5>
-                    <a class="footer-link" href="#">Help Center</a>
-                    <a class="footer-link" href="#">Contact Us</a>
-                    <a class="footer-link" href="#">Shipping Info</a>
-                    <a class="footer-link" href="#">Returns</a>
-                </div>
-
-                <!-- Company Links -->
-                <div class="col-6 col-md-3 mb-4">
-                    <h5 class="footer-heading">Company</h5>
-                    <a class="footer-link" href="#">About Us</a>
-                    <a class="footer-link" href="#">Careers</a>
-                    <a class="footer-link" href="#">Privacy Policy</a>
-                    <a class="footer-link" href="#">Terms of Service</a>
-                </div>
-            </div>
-
-            <div class="site-footer-bottom text-center mt-4 pt-3 border-top">
-                © 2025 EcomStore. All rights reserved.
-            </div>
-        </div>
-    </footer>
 
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/index.js"></script> <!-- السكربت الرئيسي -->

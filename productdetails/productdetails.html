@@ -11,46 +11,8 @@
 </head>
 <body>
 
-<!-- Header -->
-    <header class="header">
-        <div class="header-container container">
-            <a href="/index.html" class="logo">
-                <span class="logo-icon">E</span>
-                EcomStore
-            </a>
-            <nav class="nav-links d-none d-md-flex">
-                <a href="/products/products.html">Products</a>
-                <a href="/categories/categories.html">Categories</a>
-            </nav>
-            <div class="search-section">
-                <input type="text" class="search-input" placeholder="Search products..." />
-                <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-            </div>
-            <div class="auth-section d-md-flex align-items-center">
-                <!-- للزوار -->
-                <a href="/auth/signin/signin.html" id="loginLink" class="btn btn-outline login-btn">Login</a>
-                <a href="/auth/signup/signup.html" id="registerLink" class="btn btn-dark signup-btn">Sign Up</a>
-                
-                <!-- للمستخدم المسجل -->
-                <a href="/cart/cart.html" id="cartLink" class="nav-link ms-3 position-relative" style="display:none;">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">0</span>
-                </a>
-                <a href="/auth/profile/profile.html" id="profileLink" class="nav-link ms-3" style="display:none;"><i class="fas fa-user"></i></a>
-                <!-- زرار الخروج هيتضاف هنا بالجافاسكربت -->
-            </div>
-            <button class="navbar-toggler d-md-none border-0 bg-transparent" type="button" data-bs-toggle="collapse"
-                data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fas fa-bars" style="font-size: 20px; color: #0f172a"></i>
-            </button>
-        </div>
-        <div class="collapse d-md-none" id="mobileMenu">
-            <!-- Mobile nav content can be added here -->
-        </div>
-    </header>
     <main class="container my-5">
-        <a href="/products/products.html" class="text-decoration-none text-dark mb-4 d-inline-block"><i class="fas fa-arrow-left me-2"></i> Back</a>
+        <button id="back" class="mb-4 bg-transparent border-0 pointer-event"><i class="fas fa-arrow-left me-2"></i> Back</button>
         <div id="product-details-content" class="row">
             <!-- Product Gallery -->
             <div class="col-md-6 product-gallery">
@@ -100,58 +62,7 @@
             </div>
         </div>
     </main>
-    <!-- Footer -->
-    <footer class="site-footer bg-light">
-        <div class="container py-5">
-            <div class="row">
-                <!-- Brand -->
-                <div class="col-12 col-md-3 mb-4">
-                    <div class="d-flex align-items-center mb-2">
-                        <div
-                            class="footer-logo-icon d-flex align-items-center justify-content-center rounded-circle text-white fw-bold">
-                            E
-                        </div>
-                        <span class="footer-logo-text ms-2">EcomStore</span>
-                    </div>
-                    <p class="small text-muted mb-0">
-                        Your trusted partner for all your shopping needs. Quality
-                        products, great prices, excellent service.
-                    </p>
-                </div>
 
-                <!-- Shop Links -->
-                <div class="col-6 col-md-3 mb-4">
-                    <h5 class="footer-heading">Shop</h5>
-                    <a class="footer-link" href="/products/products.html">All Products</a>
-                    <a class="footer-link" href="/categories/categories.html">Categories</a>
-                    <a class="footer-link" href="#">Special Deals</a>
-                    <a class="footer-link" href="#">New Arrivals</a>
-                </div>
-
-                <!-- Support Links -->
-                <div class="col-6 col-md-3 mb-4">
-                    <h5 class="footer-heading">Support</h5>
-                    <a class="footer-link" href="#">Help Center</a>
-                    <a class="footer-link" href="#">Contact Us</a>
-                    <a class="footer-link" href="#">Shipping Info</a>
-                    <a class="footer-link" href="#">Returns</a>
-                </div>
-
-                <!-- Company Links -->
-                <div class="col-6 col-md-3 mb-4">
-                    <h5 class="footer-heading">Company</h5>
-                    <a class="footer-link" href="#">About Us</a>
-                    <a class="footer-link" href="#">Careers</a>
-                    <a class="footer-link" href="#">Privacy Policy</a>
-                    <a class="footer-link" href="#">Terms of Service</a>
-                </div>
-            </div>
-
-            <div class="site-footer-bottom text-center mt-4 pt-3 border-top">
-                © 2025 EcomStore. All rights reserved.
-            </div>
-        </div>
-    </footer>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/index.js"></script> <!-- بنستدعي الملف الرئيسي عشان نستخدم الدوال اللي جواه -->
     <script src="productdetails.js"></script>

@@ -148,10 +148,10 @@ function renderProducts(productsArray) {
   productsArray.forEach((product) => {
     const imagePath = product.image;
     const detailsPageUrl = `/productdetails/productdetails.html?id=${product.id}`;
-    let buttonsHTML = `<a href="${detailsPageUrl}" class="btn btn-outline-dark w-100 view-details-btn">View Details</a>`;
+    let buttonsHTML = `<a href="${detailsPageUrl}" class="btn btn-outline-dark w-100 mt-3">View Details</a>`;
     if (loggedInUser) {
       buttonsHTML = `
-        <a href="${detailsPageUrl}" class="btn btn-outline-dark w-100 view-details-btn">View Details</a>
+        <a href="${detailsPageUrl}" class="btn btn-outline-dark w-100 mt-3">View Details</a>
         <a href="#" class="btn btn-dark w-100 mt-2 add-to-cart-btn">Add to Cart</a>
       `;
     }
@@ -161,7 +161,7 @@ function renderProducts(productsArray) {
           <img src="${imagePath}" alt="${product.title}" onerror="this.src='https://placehold.co/600x400/ccc/FFFFFF?text=Image+Not+Found'" />
         </div>
         <div class="product-info">
-          <h3 class="product-title">${product.title}</h3>
+          <h3 class="product-title">${product.title.split(" ").slice(0,3).join(" ")}...</h3>
           <div class="product-footer">
             <span class="product-price">$${product.price.toFixed(2)}</span>
             <span class="product-category">${product.category}</span>

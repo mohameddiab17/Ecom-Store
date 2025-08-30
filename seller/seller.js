@@ -131,14 +131,14 @@ function displayNewProductInSellerDashboard() {
     tbody.appendChild(createdtr);
     createdtr.innerHTML = `
     <td class="d-flex align-items-center">
-      <img src="${product.image}" style="width:30px; margin-right:10px;"/>
+      <img src="${product.image}" style="width:20px; margin-right:10px;"/>
       <div>
-        <p id="title" class="fw-medium">${product.title
+        <p id="title" class="fw-medium m-0">${product.title
           .split(" ")
           .slice(0, 3)
           .join(" ")}</p>
       <p class="text-muted 
-       d-md-block">${product.description
+       d-md-block m-0">${product.description
          .split(" ")
          .slice(0, 5)
          .join(" ")}...</p>
@@ -247,8 +247,12 @@ function removeNewProduct(id, btn) {
 
       let row = btn.closest("tr");
       if (row) row.remove();
-      
     }
     updateCards();
   });
 }
+
+const back = document.getElementById("back");
+back.addEventListener("click", function () {
+  history.back();
+});

@@ -423,4 +423,3 @@ document.querySelectorAll(".status-select").forEach((select) => {
   });
 });
 
-// ------------------ Order Modal ------------------

@@ -130,3 +130,8 @@ form {
   justify-content: center;
   z-index: 9999;              /* يخليها فوق أي حاجة */
 }
+
+
+#update-product-form>div {
+    width: 350px;
+}

@@ -1,46 +1,58 @@
-document.getElementById("registerForm").addEventListener("submit", function (e) {
+const back = document.getElementById("back");
+back.addEventListener("click", function () {
+  history.back();
+});
+
+document
+  .getElementById("registerForm")
+  .addEventListener("submit", function (e) {
     e.preventDefault();
 
     let fullname = document.getElementById("fullname").value;
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
-    let accountType = document.getElementById("account-type").value.toLowerCase();
+    let accountType = document
+      .getElementById("account-type")
+      .value.toLowerCase();
 
     const existingUsersEncrypted = localStorage.getItem("users");
     let users = []; // بنجهز قايمة فاضية
 
     if (existingUsersEncrypted) {
-        // لو فيه مستخدمين متخزنين، هنفك تشفيرهم ونحولهم لـ array
-        const bytes = CryptoJS.AES.decrypt(existingUsersEncrypted, "mySecretKey");
-        const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
-        users = JSON.parse(decryptedData);
+      // لو فيه مستخدمين متخزنين، هنفك تشفيرهم ونحولهم لـ array
+      const bytes = CryptoJS.AES.decrypt(existingUsersEncrypted, "mySecretKey");
+      const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+      users = JSON.parse(decryptedData);
     }
 
     // 2. هنتأكد إن الإيميل ده مش متسجل قبل كده
-    const isEmailTaken = users.some(user => user.email === email);
+    const isEmailTaken = users.some((user) => user.email === email);
     if (isEmailTaken) {
-        Swal.fire({
+      Swal.fire({
         title: "This email is already registered!",
         icon: "error",
-        });
-            return; // هنوقف العملية عشان الإيميل ميتكررش
-        }
+      });
+      return; // هنوقف العملية عشان الإيميل ميتكررش
+    }
 
     // 3. هنضيف المستخدم الجديد للقائمة
     const newUser = { fullname, email, password, accountType };
     users.push(newUser);
 
     // 4.  local storage هنشفر القايمة المحدثة كلها ونخزنها تاني في ال
-    const updatedUsersEncrypted = CryptoJS.AES.encrypt(JSON.stringify(users), "mySecretKey").toString();
+    const updatedUsersEncrypted = CryptoJS.AES.encrypt(
+      JSON.stringify(users),
+      "mySecretKey"
+    ).toString();
     localStorage.setItem("users", updatedUsersEncrypted); // بنخزن في "users"
 
     Swal.fire({
-    title: "Account created successfully! You can now login.",
-    icon: "success",
-    confirmButtonText: `<i class="fa fa-thumbs-up"></i> Great!`
+      title: "Account created successfully! You can now login.",
+      icon: "success",
+      confirmButtonText: `<i class="fa fa-thumbs-up"></i> Great!`,
     }).then((result) => {
-    if (result.isConfirmed) {
+      if (result.isConfirmed) {
         window.location.href = "/auth/signin/signin.html";
-    }
+      }
     });
-});
+  });
