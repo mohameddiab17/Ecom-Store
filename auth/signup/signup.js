@@ -15,36 +15,50 @@ document
       .getElementById("account-type")
       .value.toLowerCase();
 
+    // ✅ Email validation with regex
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    if (!isValidEmail(email)) {
+      Swal.fire({
+        title: "Invalid email format!",
+        text: "Please enter a valid email like example@domain.com",
+        icon: "error",
+      });
+      return; // stop form submission
+    }
+
     const existingUsersEncrypted = localStorage.getItem("users");
-    let users = []; // بنجهز قايمة فاضية
+    let users = [];
 
     if (existingUsersEncrypted) {
-      // لو فيه مستخدمين متخزنين، هنفك تشفيرهم ونحولهم لـ array
       const bytes = CryptoJS.AES.decrypt(existingUsersEncrypted, "mySecretKey");
       const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
       users = JSON.parse(decryptedData);
     }
 
-    // 2. هنتأكد إن الإيميل ده مش متسجل قبل كده
+    // Check if email already exists
     const isEmailTaken = users.some((user) => user.email === email);
     if (isEmailTaken) {
       Swal.fire({
         title: "This email is already registered!",
         icon: "error",
       });
-      return; // هنوقف العملية عشان الإيميل ميتكررش
+      return;
     }
 
-    // 3. هنضيف المستخدم الجديد للقائمة
+    // Add new user
     const newUser = { fullname, email, password, accountType };
     users.push(newUser);
 
-    // 4.  local storage هنشفر القايمة المحدثة كلها ونخزنها تاني في ال
+    // Encrypt and save
     const updatedUsersEncrypted = CryptoJS.AES.encrypt(
       JSON.stringify(users),
       "mySecretKey"
     ).toString();
-    localStorage.setItem("users", updatedUsersEncrypted); // بنخزن في "users"
+    localStorage.setItem("users", updatedUsersEncrypted);
 
     Swal.fire({
       title: "Account created successfully! You can now login.",
