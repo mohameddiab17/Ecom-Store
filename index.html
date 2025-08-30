@@ -13,18 +13,14 @@
 <body>
   <!-- Header -->
   <header class="header">
-    <div class="header-container container">
-      <a href="/index.html" class="logo">
+    <nav class="header-container container">
+      <a href="/index.html" class="logo fw-bolder fs-5">
         <span class="logo-icon">E</span>
         EcomStore
       </a>
-      <nav class="nav-links d-none d-md-flex">
-        <a href="/products/products.html">Products</a>
-        <a href="/categories/categories.html">Categories</a>
-      </nav>
-      <div class="search-section">
-        <input type="text" class="search-input" placeholder="Search products..." />
-        <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+      <div class="nav-links d-none d-md-flex">
+        <a href="/products/products.html" class=" fs-6 fw-bold">Products</a>
+        <a href="/categories/categories.html" class=" fs-6 fw-bold">Categories</a>
       </div>
 
       <!-- Desktop Auth Section -->
@@ -36,7 +32,7 @@
         <!-- للمستخدم المسجل -->
         <a href="/cart/cart.html" id="cartLink" class="nav-link ms-3 position-relative" style="display:none;">
           <i class="fas fa-shopping-cart"></i>
-          <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
             style="display: none;">0</span>
         </a>
 
@@ -61,7 +57,7 @@
         data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <i class="fas fa-bars" style="font-size: 20px; color: #0f172a"></i>
       </button>
-    </div>
+    </nav>
 
     <!-- Offcanvas Mobile Menu -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -226,7 +222,7 @@
 
   <!-- Footer -->
   <footer class="site-footer bg-light">
-    <div class="container py-5">
+    <div class="container pt-5 pb-3">
       <div class="row">
         <!-- Brand -->
         <div class="col-12 col-md-3 mb-4">
@@ -285,13 +281,9 @@
     <span style="left:90%;animation-duration:22s;width:8px;height:8px;"></span>
   </div>
 
-  
-
-
-
   <script src="./assets/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/js/index.js"></script>
-  
+
 
 </body>
 

@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const back = document.getElementById("back");
+    back.addEventListener("click", function() {
+        history.back();
+    })
     // --- 1. GET PRODUCT ID FROM URL ---
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
@@ -100,8 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // بنحول زرار "Add to Cart" لـ "Login to Purchase"
         addToCartBtn.outerHTML = `
-            <a href="/auth/signin/signin.html" class="btn btn-dark btn-lg d-grid">
-                <i class="fas fa-sign-in-alt me-2"></i> Login to Purchase
+            <a href="/auth/signin/signin.html" class="btn btn-dark btn-lg">
+               Login to Purchase <i class="fas fa-sign-in-alt me-2"></i> 
             </a>
         `;
     }

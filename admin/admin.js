@@ -408,3 +408,8 @@ const closeModal = document.getElementById("closeModal");
 //     orderModal.classList.add("d-none");
 //   }
 // });
+
+const back = document.getElementById("back");
+    back.addEventListener("click", function() {
+        history.back();
+    })
