@@ -9,60 +9,10 @@
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/main.css">
   <link rel="stylesheet" href="./admin.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 
 <body>
-
-
-  <div
-    class="editProduct py-5 d-flex justify-content-center add-product position-fixed top-0 bottom-0 start-0 end-0 z-2 d-none overflow-auto">
-    <div class="bg-white p-3 rounded shadow-sm position-relative" style="width: 400px; max-height: 100vh;">
-      <i class="fa-solid fa-xmark close-edit"></i>
-
-      <!-- Title -->
-      <h4 class="fw-bold">Update Product</h4>
-      <p class="text-muted mb-4">Fill in the details to update the product.</p>
-
-      <!-- Form -->
-      <form>
-
-        <!-- Product Name -->
-        <div class="mb-3">
-          <label class="form-label">Product Name</label>
-          <input type="text" id="titleUpdated" class="form-control" placeholder="Enter product name" required>
-        </div>
-
-        <!-- Price -->
-        <div class="mb-3">
-          <label class="form-label">Price ($)</label>
-          <input type="number" id="priceUpdated" class="form-control" value="0" min="0" required>
-        </div>
-
-        <!-- Category -->
-        <div class="mb-3">
-          <label class="form-label">Category</label>
-          <select id="categoryUpdated" class="form-select" required>
-            <option selected disabled>Select category</option>
-            <option>Clothing</option>
-            <option>Fitness</option>
-            <option>Electronics</option>
-          </select>
-        </div>
-
-        <!-- Stock Quantity -->
-        <div class="mb-3">
-          <label class="form-label">Stock Quantity</label>
-          <input type="number" id="stockUpdated" class="form-control" value="0" min="0" required>
-        </div>
-
-        <!-- Buttons -->
-
-        <button type="submit" id="updateBtn" class="btn btn-dark me-auto">Update Product</button>
-
-
-      </form>
-    </div>
-  </div>
 
   <div class="container py-4">
     <button id="back" class="mb-4 bg-transparent border-0 pointer-event"><i class="fas fa-arrow-left me-2"></i> Back</button>
@@ -168,56 +118,7 @@
               </tr>
             </thead>
             <tbody id="usersTableBody">
-              <tr>
-                <td>
-                  <p class="fw-medium">moahmed</p>
-                  <p class="text-muted">
-                    ID: 125487
-                  </p>
-                </td>
-                <td>mohamed@gmail.com</td>
-                <td><span class="role role-seller text-capitalize">Seller</span></td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-eye"></i></button>
-                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p class="fw-medium">moahmed</p>
-                  <p class="text-muted">
-                    ID: 125487
-                  </p>
-                </td>
-                <td>mohamed@gmail.com</td>
-                <td><span class="role role-customer text-capitalize">Customer</span></td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-eye"></i></button>
-                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p class="fw-medium">moahmed</p>
-                  <p class="text-muted">
-                    ID: 125487
-                  </p>
-                </td>
-                <td>mohamed@gmail.com</td>
-                <td><span class="role role-admin text-capitalize">admin</span></td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-eye"></i></button>
-                    <!-- <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button> -->
-                  </div>
-                </td>
-              </tr>
+              
             </tbody>
 
           </table>
@@ -239,78 +140,7 @@
               </tr>
             </thead>
             <tbody id="ordersTable">
-              <tr>
-                <td>
-                  <p class="fw-medium">#ORD-002</p>
-                  <p class="text-muted">
-                    Track: TRK987654321
-                  </p>
-                </td>
-                <td>
-                  <p class="fw-medium">Customar-name</p>
-                  <p class="text-muted">
-                    customer@gmail.com
-                  </p>
-                </td>
-                <td>$220</td>
-                <td><span class="status shipped"><i class="fa-solid fa-microchip"></i>Shipped</span></td>
-                <td>22/10/2024</td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-secondary" id="eye"><i class="fa-regular fa-eye"></i></button>
-                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p class="fw-medium">#ORD-005</p>
-                  <p class="text-muted">
-                    Track: TRK987654321
-                  </p>
-                </td>
-                <td>
-                  <p class="fw-medium">Customar-name</p>
-                  <p class="text-muted">
-                    customer@gmail.com
-                  </p>
-                </td>
-                <td>$220</td>
-                <td><span class="status cancelled"><i class="fa-solid fa-xmark"></i>Cancelled</span></td>
-                <td>22/4/2024</td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-eye"></i></button>
-                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p class="fw-medium">#ORD-007</p>
-                  <p class="text-muted">
-                    Track: TRK987654321
-                  </p>
-                </td>
-                <td>
-                  <p class="fw-medium">Customar-name</p>
-                  <p class="text-muted">
-                    customer@gmail.com
-                  </p>
-                </td>
-                <td>$220</td>
-                <td><span class="status delivered"><i class="fa-regular fa-truck"></i>Delivered</span></td>
-                <td>12/1/2024</td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-eye"></i></button>
-                    <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                  </div>
-                </td>
-              </tr>
-
+             
             </tbody>
 
           </table>
@@ -319,12 +149,61 @@
     </div>
   </div>
 
+  <div class="editProduct py-5 d-flex justify-content-center add-product position-fixed top-0 bottom-0 start-0 end-0 z-2 d-none overflow-auto">
+    <div class="bg-white p-3 rounded shadow-sm position-relative" style="width: 400px; max-height: 100vh;">
+      <i class="fa-solid fa-xmark close-edit"></i>
+
+      <!-- Title -->
+      <h4 class="fw-bold">Update Product</h4>
+      <p class="text-muted mb-4">Fill in the details to update the product.</p>
+
+      <!-- Form -->
+      <form>
+
+        <!-- Product Name -->
+        <div class="mb-3">
+          <label class="form-label">Product Name</label>
+          <input type="text" id="titleUpdated" class="form-control" placeholder="Enter product name" required>
+        </div>
+
+        <!-- Price -->
+        <div class="mb-3">
+          <label class="form-label">Price ($)</label>
+          <input type="number" id="priceUpdated" class="form-control" value="0" min="0" required>
+        </div>
+
+        <!-- Category -->
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select id="categoryUpdated" class="form-select" required>
+            <option selected disabled>Select category</option>
+            <option>Clothing</option>
+            <option>Fitness</option>
+            <option>Electronics</option>
+          </select>
+        </div>
+
+        <!-- Stock Quantity -->
+        <div class="mb-3">
+          <label class="form-label">Stock Quantity</label>
+          <input type="number" id="stockUpdated" class="form-control" value="0" min="0" required>
+        </div>
+
+        <!-- Buttons -->
+
+        <button type="submit" id="updateBtn" class="btn btn-dark me-auto">Update Product</button>
+
+
+      </form>
+    </div>
+  </div>
+
   <!-- Custom Modal -->
   <div id="orderModal" class="custom-backdrop d-none">
-    <div class="custom-modal shadow py-5">
+    <div class="custom-modal shadow">
       <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
         <h5 class="m-0">Order Details - #ORD-002</h5>
-        <button id="closeModal" class="btn-close"></button>
+        <button id="closeOrder" class="btn-close"></button>
       </div>
 
       <p class="text-muted">Complete order information and management options</p>
