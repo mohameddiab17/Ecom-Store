@@ -83,7 +83,7 @@ function handleNavbar() {
     const navLinksContainers = document.querySelectorAll('.nav-links');
     if (user.accountType && user.accountType.toLowerCase() === "admin") {
       if (!document.querySelector('.nav-links a[href="/admin/admin.html"]')) {
-        const adminDashboardLink = `<a href="/admin/admin.html" class="fw-bold text-danger">Admin Dashboard</a>`;
+        const adminDashboardLink = `<a href="/admin/admin.html" class="fw-bold text-danger fs-6">Admin Dashboard</a>`;
         navLinksContainers.forEach((container) =>
           container.insertAdjacentHTML("afterbegin", adminDashboardLink)
         );
