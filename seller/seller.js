@@ -26,7 +26,9 @@ if (!products) {
   noAddedProductsScreen.classList.remove("d-none");
   noAddedProductsScreen.classList.add("d-flex");
 }
+
 function updateCards() {
+  let products = JSON.parse(localStorage.getItem("products")) || []; // get latest
   totalProductsData.textContent = products.length;
   revenueData.textContent = "$" + calcRevenue();
   lowStock.textContent = calcLowStock();
@@ -60,6 +62,7 @@ function calcOutofStock() {
   let count = products.filter((p) => p.stock == 0).length;
   return count;
 }
+
 
 addProductBtn.addEventListener("click", function () {
   console.log("add-product-btn clicked");
@@ -121,6 +124,10 @@ function addNewProductToLocalStorage() {
 
 function displayNewProductInSellerDashboard() {
   console.log("i am  displayNewProductInSellerDashboard()");
+
+  // clear old tbody if exists
+  productsTable.querySelector("tbody")?.remove();
+  
   let tbody = document.createElement("tbody");
   productsTable.appendChild(tbody);
 
@@ -171,6 +178,14 @@ function displayNewProductInSellerDashboard() {
 function dispalyDetailsofNewProduct(id) {
   window.location.href = "../productdetails/productdetails.html?id=" + id;
 }
+
+submitAddBtn.addEventListener("click", function () {
+  addNewProductToLocalStorage();
+  displayNewProductInSellerDashboard(); // refresh table
+  updateCards(); // refresh total products, revenue, etc.
+  addProductForm.classList.add("d-none"); // hide form if needed
+});
+
 
 function editNewProduct(id) {
   console.log("edittttt");

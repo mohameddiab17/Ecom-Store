@@ -384,7 +384,6 @@ document.addEventListener("DOMContentLoaded", () => {
     displayProducts(filteredProducts);
   }
 
-  // --- ## التعديل هنا: بنقرأ الـ category من اللينك ## ---
   const urlParams = new URLSearchParams(window.location.search);
   const categoryFromUrl = urlParams.get("category");
 
@@ -392,7 +391,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const categories = [...new Set(allProducts.map((p) => p.category))];
   categorySelect.innerHTML = "<option>All Categories</option>";
   categories.forEach((cat) => {
-    // لو الـ category اللي جاي من اللينك هو نفس الـ category الحالي، بنخليه هو اللي مختار
     const selected = cat === categoryFromUrl ? "selected" : "";
     categorySelect.innerHTML += `<option value="${cat}" ${selected}>${cat}</option>`;
   });
@@ -401,7 +399,6 @@ document.addEventListener("DOMContentLoaded", () => {
   categorySelect.addEventListener("change", applyFiltersAndSort);
   sortSelect.addEventListener("change", applyFiltersAndSort);
 
-  // بنشغل الفلترة أول ما الصفحة تفتح عشان لو فيه category جاي في اللينك، يتطبق على طول
   applyFiltersAndSort();
 });
 

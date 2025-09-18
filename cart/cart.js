@@ -10,8 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const loggedInUser = sessionStorage.getItem("loggedInUser");
   if (!loggedInUser) {
     // لو المستخدم مش مسجل دخوله، بنعرض رسالة تسجيل الدخول
+    // if user not loggedin, show login required message
     displayLoginPrompt();
-    return; // بنوقف باقي الكود
+    return; 
   }
   function renderCart() {
     // 1. Get the list of products from localStorage

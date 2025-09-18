@@ -3,70 +3,114 @@ back.addEventListener("click", function () {
   history.back();
 });
 
-document
-  .getElementById("registerForm")
-  .addEventListener("submit", function (e) {
-    e.preventDefault();
+const fullname = document.getElementById("fullname");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const accountType = document.getElementById("account-type");
 
-    let fullname = document.getElementById("fullname").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-    let accountType = document
-      .getElementById("account-type")
-      .value.toLowerCase();
+// Regex patterns
+const nameRegex = /^[A-Za-z\s]{3,}$/; // at least 3 letters
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
 
-    // ✅ Email validation with regex
-    function isValidEmail(email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    }
+// ✅ Reusable validation function
+function validateField(input, regex) {
+  if (!regex.test(input.value.trim())) {
+    input.classList.add("is-invalid");
+    input.classList.remove("is-valid");
+    return false;
+  } else {
+    input.classList.remove("is-invalid");
+    input.classList.add("is-valid");
+    return true;
+  }
+}
 
-    if (!isValidEmail(email)) {
-      Swal.fire({
-        title: "Invalid email format!",
-        text: "Please enter a valid email like example@domain.com",
-        icon: "error",
-      });
-      return; // stop form submission
-    }
+// ✅ Attach real-time validation
+fullname.addEventListener("change", () => validateField(fullname, nameRegex));
+email.addEventListener("change", () => validateField(email, emailRegex));
+password.addEventListener("change", () => validateField(password, passwordRegex));
+accountType.addEventListener("change", () => {
+  if (!accountType.value) {
+    accountType.classList.add("is-invalid");
+    accountType.classList.remove("is-valid");
+  } else {
+    accountType.classList.remove("is-invalid");
+    accountType.classList.add("is-valid");
+  }
+});
 
-    const existingUsersEncrypted = localStorage.getItem("users");
-    let users = [];
+// ✅ Submit handling
+document.getElementById("registerForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    if (existingUsersEncrypted) {
-      const bytes = CryptoJS.AES.decrypt(existingUsersEncrypted, "mySecretKey");
-      const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
-      users = JSON.parse(decryptedData);
-    }
+  let isValid =
+    validateField(fullname, nameRegex) &
+    validateField(email, emailRegex) &
+    validateField(password, passwordRegex);
 
-    // Check if email already exists
-    const isEmailTaken = users.some((user) => user.email === email);
-    if (isEmailTaken) {
-      Swal.fire({
-        title: "This email is already registered!",
-        icon: "error",
-      });
-      return;
-    }
+  if (!accountType.value) {
+    accountType.classList.add("is-invalid");
+    isValid = false;
+  }
 
-    // Add new user
-    const newUser = { fullname, email, password, accountType };
-    users.push(newUser);
-
-    // Encrypt and save
-    const updatedUsersEncrypted = CryptoJS.AES.encrypt(
-      JSON.stringify(users),
-      "mySecretKey"
-    ).toString();
-    localStorage.setItem("users", updatedUsersEncrypted);
-
+  if (!isValid) {
+    // 👉 Show error only when pressing Create Account
     Swal.fire({
-      title: "Account created successfully! You can now login.",
-      icon: "success",
-      confirmButtonText: `<i class="fa fa-thumbs-up"></i> Great!`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = "/auth/signin/signin.html";
-      }
+      icon: "error",
+      title: "Validation Error",
+      text: "Please fix the highlighted fields before submitting.",
     });
+    return;
+  }
+
+  // ✅ If all valid → save user
+  const existingUsersEncrypted = localStorage.getItem("users");
+  let users = [];
+
+  if (existingUsersEncrypted) {
+    const bytes = CryptoJS.AES.decrypt(existingUsersEncrypted, "mySecretKey");
+    const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+    users = JSON.parse(decryptedData);
+  }
+
+  // Check if email already exists
+  const isEmailTaken = users.some((user) => user.email === email.value.trim());
+  if (isEmailTaken) {
+    email.classList.add("is-invalid");
+    Swal.fire({
+      icon: "error",
+      title: "Email Already Registered",
+      text: "Please use a different email address.",
+    });
+    return;
+  }
+
+  // Add new user
+  const newUser = {
+    fullname: fullname.value.trim(),
+    email: email.value.trim(),
+    password: password.value.trim(),
+    accountType: accountType.value.toLowerCase(),
+  };
+  users.push(newUser);
+
+  // Encrypt and save
+  const updatedUsersEncrypted = CryptoJS.AES.encrypt(
+    JSON.stringify(users),
+    "mySecretKey"
+  ).toString();
+  localStorage.setItem("users", updatedUsersEncrypted);
+
+  // ✅ Success with SweetAlert2
+  Swal.fire({
+    icon: "success",
+    title: "Account Created!",
+    text: "You can now log in.",
+    confirmButtonText: `<i class="fa fa-thumbs-up"></i> Great!`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "/auth/signin/signin.html";
+    }
   });
+});

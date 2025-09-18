@@ -5,14 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderOrders() {
     const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
 
-    // لو مفيش مستخدم مسجل، وديه لصفحة الدخول
+    // if user not loggedin, redirect him to login page
     if (!loggedInUser) {
       window.location.href = "/auth/signin/signin.html";
       return;
     }
 
     const allOrders = JSON.parse(localStorage.getItem("userOrders")) || [];
-    // بنفلتر الطلبات عشان نجيب بس الطلبات بتاعة المستخدم الحالي
+    // filter orders for current user only
     const myOrders = allOrders.filter(
       (order) => order.userEmail === loggedInUser.email
     );
@@ -22,12 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    ordersContainer.innerHTML = ""; // بنفضي الكونتينر
-
+    ordersContainer.innerHTML = ""; 
     myOrders.reverse().forEach((order) => {
-      // .reverse() عشان نعرض الطلبات الجديدة الأول
+      // .reverse() => to show new orders first
       let itemsPreviewHTML = "";
-      // بنعرض أول منتج بس كصورة مصغرة للطلب
+      // show first order only as an tiny image for order
       if (order.items.length > 0) {
         const firstItem = order.items[0];
         itemsPreviewHTML = `

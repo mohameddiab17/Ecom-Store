@@ -96,13 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     } else {
-        // ## --- التعديل هنا: لو المستخدم زائر --- ##
-        // بنخفي عداد الكمية
         quantityInput.parentElement.style.display = 'none';
         stockEl.style.display = 'none';
         document.querySelector('label[for="quantity-input"]').style.display = 'none';
 
-        // بنحول زرار "Add to Cart" لـ "Login to Purchase"
+        //  "Add to Cart" to "Login to Purchase"
         addToCartBtn.outerHTML = `
             <a href="/auth/signin/signin.html" class="btn btn-dark btn-lg">
                Login to Purchase <i class="fas fa-sign-in-alt me-2"></i> 

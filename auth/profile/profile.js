@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateBtn = document.getElementById("updateBtn");
     
     // Sidebar elements
-    const profileInitialsEl = document.getElementById("profile-initials"); // <-- العنصر الجديد بتاع الحروف
+    const profileInitialsEl = document.getElementById("profile-initials"); 
     const sidebarName = document.getElementById("profile-sidebar-name");
     const sidebarEmail = document.getElementById("profile-sidebar-email");
     const logoutSidebarBtn = document.getElementById("logoutBtn-sidebar");
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         sidebarName.textContent = user.fullname;
         sidebarEmail.textContent = user.email;
 
-        // ## التعديل هنا: حساب وعرض الحروف الأولى ##
+        // count and display first letters
         if (user.fullname) {
             const nameParts = user.fullname.split(' ');
             const initials = nameParts.map(part => part[0]).join('').toUpperCase();
@@ -46,17 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 3. HANDLE PROFILE UPDATE ---
     profileForm.addEventListener("submit", (e) => {
-        e.preventDefault(); // <-- بنمنع الفورم من إنه يعمل submit
+        e.preventDefault(); 
 
-        // بنضيف كلاس بوتستراب عشان يظهر رسائل الخطأ
         profileForm.classList.add('was-validated');
 
-        // بنتأكد إن الفورم سليم قبل ما نكمل
         if (!profileForm.checkValidity()) {
-            return; // لو الفورم مش سليم، بنوقف كل حاجة
+            return; 
         }
 
-        // لو الفورم سليم، بنكمل عملية التحديث
         updateBtn.disabled = true;
         updateBtn.querySelector('.spinner-border').classList.remove('d-none');
 
@@ -95,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateBtn.disabled = false;
             updateBtn.querySelector('.spinner-border').classList.add('d-none');
             alert("Profile updated successfully!");
-            loadUserData(); // بنعيد تحميل كل البيانات عشان الحروف تتحدث
+            loadUserData(); 
         }, 1000);
     });
 

@@ -48,16 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
   shippingForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // بنضيف كلاس بوتستراب عشان يظهر رسائل الخطأ لو فيه
     shippingForm.classList.add("was-validated");
 
-    // checkValidity() بترجع true لو كل الحقول المطلوبة مليانة
     if (shippingForm.checkValidity()) {
-      // لو كل البيانات سليمة، بنروح لصفحة الدفع
+      // if all data correct, redirect to checkout
       console.log("Form is valid, proceeding to payment.");
       window.location.href = "/checkout/payment/payment.html";
     } else {
-      // لو فيه بيانات ناقصة، بنقف هنا ومنعملش حاجة
       console.log("Form is invalid.");
     }
   });

@@ -1,38 +1,66 @@
 const back = document.getElementById("back");
-back.addEventListener("click", function () {
-  history.back();
-});
+back.addEventListener("click", () => history.back());
+
+// Fields
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+
+// Regex
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/; 
+// At least 6 chars, must include a letter + number, specials allowed
+
+// Validation function
+function validateField(input, regex) {
+  if (!regex.test(input.value.trim())) {
+    input.classList.add("is-invalid");
+    input.classList.remove("is-valid");
+    return false;
+  } else {
+    input.classList.remove("is-invalid");
+    input.classList.add("is-valid");
+    return true;
+  }
+}
+
+// Real-time validation
+emailInput.addEventListener("change", () => validateField(emailInput, emailRegex));
+passwordInput.addEventListener("change", () => validateField(passwordInput, passwordRegex));
 
 document.getElementById("loginForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const secretKey = "mySecretKey";
+  let isValid = validateField(emailInput, emailRegex) & validateField(passwordInput, passwordRegex);
 
-  // 1. التحقق من بيانات الأدمن أولاً
-  if (email === "admin@ecom.com" && password === "admin123") {
-    const adminUser = {
-      fullname: "Admin",
-      email: email,
-      accountType: "admin",
-    };
-    // بنخزن بيانات الأدمن في ال sessionStorage
-    sessionStorage.setItem("loggedInUser", JSON.stringify(adminUser));
+  if (!isValid) {
     Swal.fire({
-      title: "Admin login successful! Redirecting to dashboard...",
-      icon: "success",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = "/admin/admin.html";
-      }
+      icon: "error",
+      title: "Validation Error",
+      text: "Please fix the highlighted fields before submitting.",
     });
-    return; // بنوقف الكود هنا عشان منطبقش عليه منطق المستخدم العادي
+    return;
   }
 
-  // 2. دخول المستخدم العادي زي ما هوا
-  const encryptedData = localStorage.getItem("users");
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+  const secretKey = "mySecretKey";
 
+  // ✅ Check admin
+  if (email === "admin@ecom.com" && password === "admin123") {
+    const adminUser = { fullname: "Admin", email, accountType: "admin" };
+    sessionStorage.setItem("loggedInUser", JSON.stringify(adminUser));
+    Swal.fire({
+      icon: "success",
+      title: "Admin login successful!",
+      text: "Redirecting to dashboard...",
+    }).then((res) => {
+      if (res.isConfirmed) window.location.href = "/admin/admin.html";
+    });
+    return;
+  }
+
+  // ✅ Normal users
+  const encryptedData = localStorage.getItem("users");
   if (encryptedData) {
     const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
     const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
@@ -43,23 +71,23 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     if (foundUser && foundUser.password === password) {
       sessionStorage.setItem("loggedInUser", JSON.stringify(foundUser));
       Swal.fire({
-        title: "Login successful!",
         icon: "success",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = "/index.html";
-        }
+        title: "Login successful!",
+      }).then((res) => {
+        if (res.isConfirmed) window.location.href = "/index.html";
       });
     } else {
+      passwordInput.classList.add("is-invalid");
       Swal.fire({
-        title: "Invalid email or password!",
         icon: "error",
+        title: "Invalid email or password!",
       });
     }
   } else {
     Swal.fire({
-      title: "No account found. Please register first.",
       icon: "error",
+      title: "No account found",
+      text: "Please register first.",
     });
   }
 });

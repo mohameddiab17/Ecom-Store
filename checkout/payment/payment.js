@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
       btnText.textContent = "Processing...";
 
       setTimeout(() => {
-        // ## --- الجزء الخاص بحفظ الطلب --- ##
+        // save order part
         const cart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
         const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
 

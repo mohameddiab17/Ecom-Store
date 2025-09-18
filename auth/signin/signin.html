@@ -11,39 +11,36 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
-    
     <div class="d-flex justify-content-center align-items-center vh-100 bg-light">
-      <button id="back" class="m-4 bg-transparent border-0 pointer-event position-absolute top-0 start-0"><i class="fas fa-arrow-left me-2"></i> Back</button>
+      <button id="back" class="m-4 bg-transparent border-0 pointer-event position-absolute top-0 start-0">
+        <i class="fas fa-arrow-left me-2"></i> Back
+      </button>
       <div class="card shadow p-4" style="width: 400px">
         <h3 class="text-center mb-2">Welcome Back</h3>
-        <p class="text-center text-muted">
-          Sign in to your account to continue shopping
-        </p>
+        <p class="text-center text-muted">Sign in to your account to continue shopping</p>
 
-        <form id="loginForm">
+        <form id="loginForm" novalidate>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" required />
+            <div class="invalid-feedback">Please enter a valid email address.</div>
           </div>
 
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" required />
-          </div>
-
-          <div class="mb-3">
-            <label for="account-type" class="form-label">Account Type</label>
-            <select id="account-type" class="form-select" required>
-              <option value="Customer">Customer</option>
-              <option value="Seller">Seller</option>
-            </select>
+            <div class="invalid-feedback">
+              Password must be at least 6 characters, contain letters and numbers.
+            </div>
           </div>
 
           <button type="submit" class="btn btn-dark w-100">Sign In</button>
         </form>
 
         <div class="text-center mt-3">
-          <small>Don’t have an account? <a href="/auth/signup/signup.html" class="text-dark fw-bold">Sign up</a></small>
+          <small>Don’t have an account? 
+            <a href="/auth/signup/signup.html" class="text-dark fw-bold">Sign up</a>
+          </small>
         </div>
       </div>
     </div>

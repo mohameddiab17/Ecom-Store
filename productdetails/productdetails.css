@@ -60,11 +60,11 @@ a {
     border-color: #212529;
 }
 
-/* ## --- تصميم قسم المنتجات ذات الصلة --- ## */
+/* related-products-section  */
 
 #related-products-section .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* بيعمل grid متجاوب للكروت */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));  
     gap: 1.5rem;
 }
 
@@ -108,22 +108,20 @@ a {
     color: #212529;
 }
 
-/* بنخفي العناصر اللي مش محتاجينها في الكروت الصغيرة */
 #related-products-section .product-category,
-#related-products-section .add-to-cart-btn, /* بنخفي زرار إضافة للسلة بس */
+#related-products-section .add-to-cart-btn, 
 #related-products-section .product-footer .product-category {
     display: none;
 }
 
 #related-products-section .product-footer {
-    justify-content: center; /* بنخلي السعر في النص */
+    justify-content: center; 
 }
 
-/* ## --- الإضافة الجديدة هنا: تعديل شكل زرار التفاصيل في المنتجات ذات الصلة --- ## */
 #related-products-section .view-details-btn {
-    display: inline-block !important; /* بنضمن إنه ظاهر */
-    width: auto !important; /* بنلغي الـ w-100 */
-    padding: 0.25rem 0.75rem; /* بنصغر حجمه */
-    font-size: 0.875rem; /* بنصغر الخط */
-    margin-top: 0.5rem; /* بنضيف مسافة فوقه */
+    display: inline-block !important; 
+    width: auto !important; 
+    padding: 0.25rem 0.75rem; 
+    font-size: 0.875rem; 
+    margin-top: 0.5rem; 
 }
